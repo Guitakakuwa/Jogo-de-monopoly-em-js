@@ -1,0 +1,6 @@
+
+
+function Aletarios(min,max) {
+	
+	
+}
