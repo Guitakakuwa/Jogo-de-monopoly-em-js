@@ -7,6 +7,7 @@
 
 
 .button_Rolar_dados {
+   display: flex;
     padding: 15px 25px;
     font-size: 24px;
     text-align: center;
@@ -17,7 +18,7 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
- display: flex;
+
  justify-content: center;
  
 
@@ -62,5 +63,19 @@ body {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+}
 
+.Player_Turn {
+  font-size: 30px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.Money_show {
+
+  color: #FFE056FF;
+      font-size: 30px;
+      font-family: 'Roboto Slab', serif;
+}
+.space_button{
+  height: 80px;
 }
