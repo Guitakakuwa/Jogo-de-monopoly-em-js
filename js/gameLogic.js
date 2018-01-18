@@ -129,12 +129,11 @@ function passTurn(){
 }
 
 function updateScreenInfo(){
-    document.getElementById('position_show').innerHTML = playerAtual.getName();
+    document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 }
 
 function rollDice(){
-    updateScreenInfo();
     if(rolledDice == false) {
         diceOne = dice1.roll();
         diceTwo = dice2.roll2();
@@ -151,6 +150,7 @@ function rollDice(){
         //  must move after roll
         movePlayer(diceOne+diceTwo);
     }
+    updateScreenInfo();
 }
 
 function movePlayer(distance){
@@ -158,7 +158,6 @@ function movePlayer(distance){
 
     //  loops the board
     newPosition = newPosition % casaVetor.length;
-
 
     if(playerAtual.isInPrision() == false) {
         playerAtual.setPosition(newPosition);
