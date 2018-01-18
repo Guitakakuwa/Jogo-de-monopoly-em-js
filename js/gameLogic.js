@@ -90,9 +90,13 @@ function gameStart(){
 }
 
 function turnLogic(){
-    
+
 
     turnNumber++;
+}
+
+function sellProperty(){
+    
 }
 
 //  beggining of the execution

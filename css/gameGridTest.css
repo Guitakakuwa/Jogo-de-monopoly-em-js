@@ -1,0 +1,28 @@
+.grid-container {
+  display: grid;
+  grid-gap: 0px;
+  /*grid-template-columns: auto auto auto;*/
+  /*grid-template-columns: 9%;*/
+  grid-template-rows: 15% 70% 15%;
+  grid-column: 100%;;
+
+  /*padding: 10px;*/
+}
+
+.center-row{
+    display: grid;
+    grid-template-columns: : 15% 70% 15%;
+    grid-column: auto;
+}
+
+.grid-item{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-style: solid;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.side-left-lane {
+
+}
