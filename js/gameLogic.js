@@ -96,12 +96,12 @@ function turnLogic(){
 
     turnNumber++;
 }
-function buyProperty {
-    
+function buyProperty() {
+
 }
 
 function sellProperty(){
-    
+
 }
 
 //  beggining of the execution
