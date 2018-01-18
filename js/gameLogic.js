@@ -82,6 +82,16 @@ function createPlayer(name){
     (playersVetor).push(newPlayer);
 }
 
+function getPlayerIndexByName (name) {
+    for(let i = 0; i < playersVetor.length; i++){
+        if(playersVetor[i] == name) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 function gameStart(){
     createPlayer("Ronaldo");
     createPlayer("Geraldinho");
@@ -124,6 +134,7 @@ function updateScreenInfo(){
 }
 
 function rollDice(){
+    updateScreenInfo();
     if(rolledDice == false) {
         diceOne = dice1.roll();
         diceTwo = dice2.roll2();
@@ -151,6 +162,27 @@ function movePlayer(distance){
 
     if(playerAtual.isInPrision() == false) {
         playerAtual.setPosition(newPosition);
+        let casaAtual = casaVetor[playerAtual.getPosition()];
+
+        // handles the events that happens at the new position
+        if(casaAtual instanceof Propriedade) {
+            // check if property not for sale
+            if(casaAtual.owner != "bank" &&
+            casaAtual.owner != playerAtual.getName()) {
+                console.log("landed on owned by others property");
+                let valorPag = casaAtual.calculaAluguel(diceOne+diceTwo);
+                let pay = mandatoryPay(valorPag);
+
+                // the money must be transfered to the receiver
+                if (pay == true) {
+                    let receiverIndex = getPlayerIndexByName(casaAtual.owner);
+                    playersVetor[receiverIndex].reciveMoney(valorPag);
+                }
+            }
+        } else if (casaAtual instanceof Evento) {
+            //Tcalls the action of the event
+            casaAtual.acaoDoEvento(playerAtual);
+        }
     }
 
     //  if players is in prision
@@ -163,6 +195,22 @@ function movePlayer(distance){
         else{
             playerAtual.prisionTime -= 1;
         }
+    }
+}
+
+// makes a player do a mandatory pay. it he has no money, he loses
+function mandatoryPay(value){
+    console.log("mandatoryPay of value: " + value);
+    if(playerAtual.pay(value) == true){
+        console.log("sucessful mandatoryPay");
+        return true;
+    }
+
+    // player can sell properties to stay in gameS
+    // or player is removed
+    else {
+        //TODO implement this feature
+        return false;
     }
 }
 
