@@ -26,15 +26,11 @@ function printNumber2(number2) {
 let button = document.getElementById('button');
 
 button.onclick = function() {
-    let result1 = dice1.roll();
-    let result2 = dice2.roll2();
-    printNumber2(result2);
-    printNumber(result1);
+    rollDice();
 };
 
 
 function VerifyEquals(dice1,dice2) {
-
 	if (dice1===dice2) {
 		return true;
 	}
