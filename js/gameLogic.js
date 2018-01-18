@@ -87,27 +87,61 @@ function gameStart(){
     createPlayer("Geraldinho");
     createPlayer("Jamires");
 
+    playerAtual = playersVetor[0];
 
+    inicializeCasas();
 
 }
 
-function turnLogic(){
+function inicializeCasas(){
+    let propreidadeTeste = new Companhia(0, 700,300,"Carro do Vallone", 9);
+    let propriedadeTeste2 = new CasaTabuleiro(1);
 
+    casaVetor.push(propreidadeTeste);
+    casaVetor.push(propriedadeTeste2);
+}
 
+function passTurn(){
     turnNumber++;
+    playerAtual = playersVetor[turnNumber%(playersVetor.length)];
 }
-function buyProperty {
-    
+
+// trys to buy the property this player is landing on
+function buyProperty(){
+    let casaAtual = casaVetor[playerAtual.getPosition()];
+    if(casaAtual instanceof Propriedade){
+        if(casaAtual.owner == "bank") {
+            if(playerAtual.pay(casaAtual.valorCompra) == true){
+                casaAtual.owner = playerAtual.getName();
+                console.log("comprou!");
+            }
+
+            else {
+                console.log("faltou dinheiro");
+            }
+        }
+
+        else{
+            console.log("esta propriedade já possui dono");
+        }
+    }
+
+    else {
+        console.log("Casa atual não é uma propeidade");
+    }
+
 }
 
 function sellProperty(){
-    
+
 }
 
 //  beggining of the execution
 let playersVetor = [];
+let casaVetor = [];
 let gameRunning = true;
 let turnNumber = 0;
+let playerAtual;
 const startingMoney = 3500;
 
 // starts the game
