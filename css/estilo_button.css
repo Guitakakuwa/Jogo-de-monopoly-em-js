@@ -1,0 +1,98 @@
+.container2 {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.Player_Turn {
+  margin-top: 20px;
+  font-size: 30px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.Money_show {
+  margin-top: 20px;
+  color: #FFE056FF;
+      font-size: 30px;
+      font-family: 'Roboto Slab', serif;
+}
+.space_button{
+  height: 90px;
+}
+.space_button_dice{
+  height: auto;
+  display:flex;
+  margin:8%;
+
+}
+#placeholder ,#placeholder2  {
+  height: 20px;
+  width: 20px;
+  margin-left: : 50px ;
+  border: 1px solid gray;
+  border-radius: 10px;  
+  font-size:20px;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+
+
+}    .button_Rolar_dados {
+    display: flex;
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    button_Rolar_dados cursor: pointer;
+    outline: none;
+    color: rgb(0, 0, 0);
+    background-color: #E2E2E2;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    justify-content: center;
+    width: 70%;
+      margin-top:15px;
+}
+
+.button_Rolar_dados:hover {
+    background-color: # background-color:#A5A5A5;
+}
+
+.button_Rolar_dados:active {
+    background-color: #878787;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    #939393FF 
+}
+
+.animate
+{
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+.action-button
+{
+  position: relative;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 10px;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;  
+}
+
+.blue
+{
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+}
+
+.action-button:active
+{
+  transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+  border-bottom: 1px solid;
+}
