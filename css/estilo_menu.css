@@ -17,8 +17,8 @@ body {
 
 #esquerda-menu {
     float: left;
-    background-color: rgb(38, 36, 72);
-    width: 100%;
+    background-color: white;
+    width: 75%;
     height: 100%;
     display: grid;
     grid-template: 15% 70% 15% / 15% 70% 15%;
@@ -32,19 +32,71 @@ body {
     height: 100%;
     margin-top: 0;
 }
+.board div {
+    border-style: solid;
+    border-width: 2px;
+}
 .side-row {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+
 }
+.roxo {
+    height: 20%;
+    background-color: purple;
+}
+.azul-claro {
+    height: 20%;
+    background-color: powderblue;
+}
+.rosa {
+    height: 95%;
+    width: 20%;
+    float: right;
+    background-color: pink;
+}
+.laranja {
+    height: 95%;
+    width: 20%;
+    float: right;
+    background-color: orange;
+}
+.vermelho {
+    height: 20%;
+    background-color: red;
+    width: 97%;
+
+}
+.amarelo {
+    height: 20%;
+    background-color: yellow;
+    width: 97%;
+
+}
+
+.board .nome {
+    border-style: none;
+    font-size: 1.1em;
+    text-align: center;
+    /* padding: auto; */
+}
+.side-row .nome {
+    height: 80%;
+}
+
 .side-column {
     display: grid;
     grid-template-rows: repeat(9, 1fr);
+
 }
-.board div {
-    border-style: solid;
-    border-width: 5px;
-}
+
 .with-img img {
     width: 100%;
     height: 100%;
+}
+.corner {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.7em;
+    line-height:;
 }
