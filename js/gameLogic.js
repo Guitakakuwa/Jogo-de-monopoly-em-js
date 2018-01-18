@@ -119,8 +119,8 @@ function passTurn(){
 }
 
 function updateScreenInfo(){
-    document.getElementById('position_show').innerHTML = "nome do jogador";
-    document.getElementById('money_show').innerHTML = "dinheiro atual";
+    document.getElementById('position_show').innerHTML = playerAtual.getName();
+    document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 }
 
 function rollDice(){
