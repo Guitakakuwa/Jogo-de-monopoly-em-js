@@ -3,11 +3,9 @@
     flex-direction: row;
     height: 800px;
     width: 100%;
-}
 
-
-.button_Rolar_dados {
-   display: flex;
+}    .button_Rolar_dados {
+    display: flex;
     padding: 15px 25px;
     font-size: 24px;
     text-align: center;
@@ -18,10 +16,8 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
-
- justify-content: center;
- 
-
+    justify-content: center;
+    width: 50%;
 }
 
 .button_Rolar_dados:hover {
@@ -32,11 +28,11 @@
     background-color: #878787;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-    #939393FF
+    #939393FF 
 }
 
 body {
-    height: 800px;
+    height: 8000px;
     margin: 0;
     margin-bottom: 0;
     margin-right: 0;
@@ -77,5 +73,20 @@ body {
       font-family: 'Roboto Slab', serif;
 }
 .space_button{
-  height: 80px;
+  height: 20%;
+}
+.space_button_dice{
+  height: 20%;
+  display:flex;
+
+}
+#placeholder ,#placeholder2  {
+  height: 20px;
+  width: 20px;
+  margin-left: : 50px ;
+  border: 1px solid gray;
+  border-radius: 10px;  
+  font-size:20px;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
 }

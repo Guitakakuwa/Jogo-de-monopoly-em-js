@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Banco Imobiliario?</title>
     <link rel="stylesheet" href="css/estilo.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 </head>
 
 <body>
@@ -13,10 +13,12 @@
         <div id="esquerda-menu"> </div>
         <div id="direita-menu">
             <div class="container2">
-            	<div class="Player_Turn">Vez do jogador : </div>
-            	<div class="Money_show"> Dinheiro: $  </div>
-            	<div class="space_button">
-                    <button class="button_Rolar_dados">Roll Dices</button>
+                <div class="Player_Turn">Vez do jogador : </div>
+                <div class="Money_show"> Dinheiro: $ </div>
+                <div class="space_button_dice">
+                	 <button class="button_Rolar_dados" id="button">Roll Dices</button>
+                	<div class="space_button_dice"><div id=placeholder></div></div>
+                	<div class="space_button_dice"><div id=placeholder2></div></div>
                 </div>
                 <div class="space_button">
                     <button class="button_Rolar_dados">Comprar</button>
@@ -33,6 +35,8 @@
             </div>
         </div>
     </div>
+     <script src="js/dicelogic.js"></script>
+            
 </body>
 
 </html>
