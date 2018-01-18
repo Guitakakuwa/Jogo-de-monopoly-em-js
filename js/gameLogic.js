@@ -244,6 +244,10 @@ function sellProperty(){
 
 }
 
+function sayHi(){
+    console.log(document.getElementById("choice1").selected);
+}
+
 //  beggining of the execution
 let playersVetor = [];
 let casaVetor = [];
