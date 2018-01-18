@@ -17,12 +17,10 @@ let dice2 = {
 function printNumber(number) {
     let placeholder = document.getElementById('placeholder');
     placeholder.innerHTML = number;
-	console.log(number);
 }
 function printNumber2(number2) {
     let placeholder2 = document.getElementById('placeholder2');
     placeholder2.innerHTML = number2;
-    console.log(number2);
 }
 
 let button = document.getElementById('button');
@@ -33,3 +31,11 @@ button.onclick = function() {
     printNumber2(result2);
     printNumber(result1);
 };
+
+
+function VerifyEquals(dice1,dice2) {
+
+	if (dice1===dice2) {
+		return true;
+	}
+}
