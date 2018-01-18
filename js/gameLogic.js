@@ -87,12 +87,17 @@ function gameStart(){
     createPlayer("Geraldinho");
     createPlayer("Jamires");
 
+
+
 }
 
 function turnLogic(){
 
 
     turnNumber++;
+}
+function buyProperty {
+    
 }
 
 function sellProperty(){
