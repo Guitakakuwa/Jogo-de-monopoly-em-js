@@ -90,7 +90,7 @@ function gameStart(){
     playerAtual = playersVetor[0];
 
     inicializeCasas();
-
+    updateScreenInfo();
 }
 
 // sets the board
@@ -103,8 +103,8 @@ function inicializeCasas(){
     casaVetor.push(propriedadeTeste2);
 
     for(let i = 2; i < 40; i++) {
-         casaVazia = new CasaTabuleiro(i);
-         casaVetor.push(casaVazia);
+        casaVazia = new CasaTabuleiro(i);
+        casaVetor.push(casaVazia);
     }
 }
 
@@ -119,7 +119,8 @@ function passTurn(){
 }
 
 function updateScreenInfo(){
-
+    document.getElementById('position_show').innerHTML = "nome do jogador";
+    document.getElementById('money_show').innerHTML = "dinheiro atual";
 }
 
 function rollDice(){
