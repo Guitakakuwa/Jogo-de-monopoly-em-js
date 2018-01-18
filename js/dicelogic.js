@@ -30,12 +30,11 @@ button.onclick = function() {
     let result2 = dice2.roll2();
     printNumber2(result2);
     printNumber(result1);
-};
-
+}
 
 function VerifyEquals(dice1,dice2) {
-
 	if (dice1===dice2) {
 		return true;
 	}
 }
+
