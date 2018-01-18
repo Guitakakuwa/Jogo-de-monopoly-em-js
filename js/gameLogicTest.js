@@ -28,7 +28,7 @@ function logPlayers(){
         //  prints all properties of the player
         auxList = playersVetor[i].getProperty();
         for(j = 0; j < auxList.length; j++){
-            console.log("  >" + auxList[j].name);
+            console.log("  >" + auxList[j].nome);
         }
 
         console.log(" ");
@@ -36,4 +36,6 @@ function logPlayers(){
     }
 }
 
-logPlayers();
+
+
+//logPlayers();
