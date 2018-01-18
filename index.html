@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
+	 <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>Banco Imobiliario?</title>
-    <link rel="stylesheet" href="css/estilo.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo_button.css">
+    <link rel="stylesheet" href="css/estilo_menu.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 </head>
 
 <body>
@@ -65,13 +67,8 @@
             <div class="container2">
                 <div class="Player_Turn">Vez do jogador : </div>
                 <div class="Money_show"> Dinheiro: $ </div>
-                <div class="space_button_dice">
-                	 <button class="button_Rolar_dados" id="button">Roll Dices</button>
-                	<div class="space_button_dice"><div id=placeholder></div></div>
-                	<div class="space_button_dice"><div id=placeholder2></div></div>
-                </div>
                 <div class="space_button">
-                    <button class="button_Rolar_dados">Comprar</button>
+                    <button class="button_Rolar_dados" >Comprar</button>
                 </div>
                 <div class="space_button">
                     <button class="button_Rolar_dados">Hipotecar</button>
@@ -82,11 +79,19 @@
                 <div class="space_button">
                     <button class="button_Rolar_dados">Sair da Cadeia</button>
                 </div>
+                <div class="space_button_dice">
+                    <a href="#" class="action-button active animate blue" id="button">Roll Dices</a>
+                    <div class="space_button_dice">
+                        <div id=placeholder></div>
+                    </div>
+                    <div class="space_button_dice">
+                        <div id=placeholder2></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-     <script src="js/dicelogic.js"></script>
-
+    <script src="js/dicelogic.js"></script>
 </body>
 
 </html>
