@@ -385,8 +385,9 @@ function mandatoryPay(value){
 
         } else {
             // ALLOW PLAYER TO SELL WHAT HE WANTS
-            document.getElementById("game-log").innerHTML = "Venda algumas propreidades pra continuar no jogo!";
+            document.getElementById("game-log").innerHTML = "Venda algumas propreidades pra consegur mais " + String(value);
             mandatoryPayValue = value;
+            mandatoryPayPendency = true;
             return false;
 
         }
@@ -451,6 +452,7 @@ function updateSelectedProperty(){
 
     // if is a property is actually selected, find and update it
     else {
+        validSelectedProperty = false;
         for(let i = 0; (i < playerAtual.belongings.length) && (validSelectedProperty == false); i++){
             if(playerAtual.belongings[i].nome == selectedValue){
                 // updates de global reference to the selected property
@@ -458,8 +460,6 @@ function updateSelectedProperty(){
 
                 // this flag shows that the property was selected in this turn
                 validSelectedProperty = true;
-
-
             }
         }
 
@@ -490,6 +490,15 @@ function sellProperty(){
         playerAtual.reciveMoney((playerAtual.belongings[index].valorCompra) * 0.5);
         playerAtual.belongings.splice(index, 1);
         updateScreenInfo();
+
+        // checks for dependecys
+        if(mandatoryPayPendency == true) {
+            if(mandatoryPay(mandatoryPayValue) == true){
+                updateScreenInfo();
+                mandatoryPayValue = 0;
+                mandatoryPayPendency = false;
+            }
+        }
 
         // todo
         // belongings (use selectedProperty)
