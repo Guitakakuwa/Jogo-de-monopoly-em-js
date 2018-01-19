@@ -1,6 +1,7 @@
 
 document.getElementById("button_buy").addEventListener("click", function(){
     buyProperty();
+    updateScreenInfo();
 });
 
 //esperar ate sell estar pronto
@@ -10,6 +11,7 @@ document.getElementById("button_buy").addEventListener("click", function(){
 
 document.getElementById("button_turn").addEventListener("click", function(){
       passTurn();
+      updateScreenInfo();
 });
 
 

@@ -84,12 +84,39 @@ function createPlayer(name){
 
 function getPlayerIndexByName (name) {
     for(let i = 0; i < playersVetor.length; i++){
-        if(playersVetor[i] == name) {
+        if(playersVetor[i].getName() == name) {
             return i;
         }
     }
 
     return -1;
+}
+
+function setPlayerColors(){
+    let playerColor;
+
+    //TODO change to mantin LAST POSITION BEFORE REWRITE
+    //  there is a better way to do this
+     for(let i = 0; i < playersVetor.length; i++){
+         player = playersVetor[i];
+
+         // pre set of players playerColor
+         //TODO let this be in-game customizable
+         if(i == 0) {
+             playerColor = "green";
+         } else if (i == 1) {
+             playerColor = "blue";
+         } else if (i == 2) {
+             playerColor = "red";
+         }
+
+         // goes to trhought all the board uncheking the player
+         for(let j = 0; j < casaVetor.length; j++){
+             tokenNameID = String(i+1) + "bol" + String(j);
+             document.getElementById(tokenNameID).style.backgroundColor=playerColor;
+             console.log(tokenNameID);
+         }
+     }
 }
 
 function gameStart(){
@@ -103,49 +130,143 @@ function gameStart(){
     updateScreenInfo();
     printNumber("?");
     printNumber2("?");
+    setPlayerColors();
 }
 
 // sets the board
 function inicializeCasas(){
-    let propreidadeTeste = new Companhia(0, 700,300,"Carro do Vallone", 9);
-    let propriedadeTeste2 = new CasaTabuleiro(1);
-    let casaVazia;
+    let casa = [];
 
-    casaVetor.push(propreidadeTeste);
-    casaVetor.push(propriedadeTeste2);
 
-    for(let i = 2; i < 40; i++) {
-        casaVazia = new CasaTabuleiro(i);
-        casaVetor.push(casaVazia);
+    casa[0] = new CasaTabuleiro (0);
+    casa[1] = new Terreno (1, 100, "Leblon", 50, 6, 50, 50);
+    casa[2] = new Evento (2);
+    casa[3] = new Terreno (3, 60, "Avenida Presidente Vargas", 50, 2, 30, 30);
+    casa[4] = new Terreno (4, 60, "Avenida Nossa Senhora de Copacabana", 50, 4, 40, 30);
+    casa[5] = new Companhia (5, 200, "Companhia Ferroviária", 50, 100);
+    casa[6] = new Terreno (6, 240, "Avenida Brigadeiro Faria Lima", 150, 20, 80, 120);
+    casa[7] = new Companhia (7, 200, "Companhia de Viação", 50, 100);
+    casa[8] = new Terreno (8, 220, "Avenida Rebouças", 150, 18, 70, 110);
+    casa[9] = new Terreno (9, 220,"Avenida 9 de Julho", 150, 20, 70, 120);
+    casa[10] = new CasaTabuleiro (10);
+    casa[11] = new Terreno (11, 200, "Avenida Europa", 100, 16, 60, 100);
+    casa[12] = new Evento (12);
+    casa[13] = new Terreno (13, 180, "Rua Augusta", 100, 14, 50, 90);
+    casa[14] = new Terreno (14, 180, "Avenida Pacaembu", 100, 14, 55, 90);
+    casa[15] = new Companhia (15, 150, "Companhia de Táxi", 40, 75);
+    casa[16] = new Evento (16);
+    casa[17] = new Terreno (17, 350, "Interlagos", 200, 35, 140, 175);
+    casa[18] = new Evento (18);
+    casa[19] = new Terreno (19, 400, "Morumbi", 200, 50, 150, 200);
+    casa[20] = new CasaTabuleiro (20);
+    casa[21] = new Terreno (21, 120, "Flamengo", 50, 8, 30, 50);
+    casa[22] = new Evento (22);
+    casa[23] = new Terreno (23, 100, "Botafogo", 50, 6, 25, 50);
+    casa[24] = new Evento (24);
+    casa[25] = new Companhia (25, 150, "Companhia de Navegação", 40, 75);
+    casa[26] = new Terreno (26, 160, "Avenida Brasil", 100, 12, 50, 60);
+    casa[27] = new Evento (27);
+    casa[28] = new Terreno (28, 140, "Avenida Paulista", 100, 10, 40, 70);
+    casa[29] = new Terreno (29, 140, "Jardim Europa", 100, 10, 40, 70);
+    casa[30] = new Evento(30);
+    casa[31] = new Terreno (31, 260, "Copacabana", 150, 22, 80, 130);
+    casa[32] = new Companhia (32, 200, "Companhia de Aviação", 50, 100);
+    casa[33] = new Terreno (33, 320, "Avenida Viera Souto", 200, 28, 120, 160);
+    casa[34] = new Terreno (34, 300, "Avenida Atlântica", 200, 26, 120, 160);
+    casa[35] = new Companhia (35, 200, "Companhia de Táxi Aéreo", 50, 100);
+    casa[36] = new Terreno (35, 300, "Ipanema", 200, 24, 120, 180);
+    casa[37] = new Evento (37);
+    casa[38] = new Terreno (38, 280, "Jardim Paulista", 150, 24, 100, 140);
+    casa[39] = new Terreno (39, 260, "Brooklin", 150, 22, 90, 130);
+
+    for(let i = 0; i < 40; i++) {
+        casaVetor.push(casa[i]);
     }
+
+
+
+
+
+
+
 }
 
 function passTurn(){
     if(rolledDice == 36true) {
         turnNumber++;
+        allowBuy = false;
         printNumber("?");
         printNumber2("?");
         alteredPosition = false;
         rolledDice = false;
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
+        validSelectedProperty = false;
         updateScreenInfo();
-    } else{ 
+    } else{
         alert("Tente jogar os dados antes!");
     }
 
 }
 
+function updatesPlayerToken(){
+    let player;
+    let tokenNameID;
+    let tokenElement;
+
+    //TODO change to mantin LAST POSITION BEFORE REWRITE
+    //  there is a better way to do this
+     for(let i = 0; i < playersVetor.length; i++){
+         player = playersVetor[i];
+
+         // goes to trhought all the board uncheking the player
+         for(let j = 0; j < casaVetor.length; j++){
+             tokenNameID = String(i+1) + "bol" + String(j);
+             document.getElementById(tokenNameID).style.display="none";
+             if(player.getPosition() == j) {
+                 document.getElementById(tokenNameID).style.display="block";
+             }
+
+             //console.log(tokenNameID);
+         }
+     }
+}
+
 function updateScreenInfo(){
+    // updates players name and money
     document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
+    updatesPlayerToken();
+
     // updates de properties list
     //TODO TEST THIS!!
-    //APPEND ELEMENTS TO THE LIST
-    // let node = document.createElement("LI");                 // Create a <li> node
-    // var textnode = document.createTextNode("Water");         // Create a text node
-    // node.appendChild(textnode);                              // Append the text to <li>
-    // document.getElementById("myList").appendChild(node);
+    var propertyListNode = document.getElementById("telas da opcs");
+
+    // remove last player's propertis from the list
+    while (propertyListNode.firstChild) {
+        propertyListNode.removeChild(propertyListNode.firstChild);
+    }
+
+    // prints the new list
+    let node;
+    let textnode;
+
+    if((playerAtual.belongings).length == 0) {
+        node = document.createElement("option");
+        textnode = document.createTextNode("sem propriedades!");
+        node.appendChild(textnode);
+        document.getElementById("telas da opcs").appendChild(node);
+    }
+
+    else{
+        // goes through all players belongings
+        for(let i = 0; i < (playerAtual.belongings).length; i++){
+            node = document.createElement("option");
+            textnode = document.createTextNode((playerAtual.belongings[i]).nome);
+            node.appendChild(textnode);
+            document.getElementById("telas da opcs").appendChild(node);
+        }
+    }
 }
 
 function rollDice(){
@@ -164,9 +285,11 @@ function rollDice(){
 
         //  must move after roll
         movePlayer(diceOne+diceTwo);
+
+        allowBuy = true;
     }else{
         alert("Não é tua vez! Ta querendo roubar?!");
-    
+
     }
     updateScreenInfo();
 }
@@ -181,6 +304,9 @@ function movePlayer(distance){
         playerAtual.setPosition(newPosition);
         let casaAtual = casaVetor[playerAtual.getPosition()];
 
+        // updates to show the player's new position
+        updateScreenInfo();
+
         // handles the events that happens at the new position
         if(casaAtual instanceof Propriedade) {
             // check if property not for sale
@@ -194,6 +320,7 @@ function movePlayer(distance){
                 if (pay == true) {
                     let receiverIndex = getPlayerIndexByName(casaAtual.owner);
                     playersVetor[receiverIndex].reciveMoney(valorPag);
+                    alert("Pagou " + valorPag + " por dar role!");
                 }
             }
         } else if (casaAtual instanceof Evento) {
@@ -236,14 +363,20 @@ function buyProperty(){
     let casaAtual = casaVetor[playerAtual.getPosition()];
     if(casaAtual instanceof Propriedade){
         if(casaAtual.owner == "bank") {
-            if(playerAtual.pay(casaAtual.valorCompra) == true){
-                casaAtual.owner = playerAtual.getName();
-                playerAtual.addProperty(casaAtual);
-                alert("Comprou!");
+            if(allowBuy == true) {
+                if(playerAtual.pay(casaAtual.valorCompra) == true){
+                    casaAtual.owner = playerAtual.getName();
+                    playerAtual.addProperty(casaAtual);
+                    alert("Comprou!");
+                }
+
+                else {
+                    alert("Faltou dinheiro");
+                }
             }
 
             else {
-                alert("Faltou dinheiro");
+                alert("Tem que rodar antes de tentar comprar!");
             }
         }
 
@@ -258,12 +391,52 @@ function buyProperty(){
 
 }
 
-function sellProperty(){
+function updateSelectedProperty(){
+    // this assumes that the player can only select
+    // his own properties
+
+    let selectedName = "_none";
+    let propertyListNode = document.getElementById("telas da opcs");
+    let selectedValue = propertyListNode.value;
+    let listSize = propertyListNode.childElementCount;
+
+    console.log(selectedValue);
+
+    if(selectedValue == "" || selectedValue == "sem propriedades!"){
+        validSelectedProperty = false;
+        alert("Não pode fazer ação sem selecionar propriedade válida!");
+    }
+
+    // if is a property is actually selected, find and update it
+    else {
+        for(let i = 0; i < playerAtual.belongings.length; i++){
+            if(playerAtual.belongings[i].nome == selectedValue){
+                // updates de global reference to the selected property
+                selectedProperty = playerAtual.belongings[i];
+
+                // this flag shows that the property was selected in this turn
+                validSelectedProperty = true;
+
+            } else {
+                console.log("ERRO: propriedade não encontrada na lista.");
+            }
+        }
+
+    }
+
+    //TODO remove if uncesseary - check it
+    // let auxName;
+    // for(let i = 0; i < listSize; i++){
+    //     auxName = propertyListNode.childNodes[i].firstChild.nodeValue;
+    //     console.log("got name>" + auxName + "<"+propertyListNode.value);
+    //
+    // }
 
 }
 
-function sayHi(){
-    console.log(document.getElementById("choice1").selected);
+function sellProperty(){
+
+
 }
 
 //  beggining of the execution
@@ -274,9 +447,12 @@ let turnNumber = 0;
 let playerAtual;
 let alteredPosition = false;
 let rolledDice = false;
+let allowBuy = false;
 const startingMoney = 3500;
 let diceOne = 0;
 let diceTwo = 0;
+let validSelectedProperty = false;
+let selectedProperty;
 
 // starts the game
 gameStart();
