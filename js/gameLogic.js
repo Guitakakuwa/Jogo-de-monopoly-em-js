@@ -192,7 +192,7 @@ function inicializeCasas(){
 }
 
 function passTurn(){
-    if(rolledDice == 36true) {
+    if(rolledDice == true) {
         turnNumber++;
         allowBuy = false;
         printNumber("?");
