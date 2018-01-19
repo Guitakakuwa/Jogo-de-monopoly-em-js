@@ -84,7 +84,7 @@ function createPlayer(name){
 
 function getPlayerIndexByName (name) {
     for(let i = 0; i < playersVetor.length; i++){
-        if(playersVetor[i] == name) {
+        if(playersVetor[i].getName() == name) {
             return i;
         }
     }
@@ -166,12 +166,16 @@ function inicializeCasas(){
 function passTurn(){
     if(rolledDice == true) {
         turnNumber++;
+        allowBuy = false;
         printNumber("?");
         printNumber2("?");
         alteredPosition = false;
         rolledDice = false;
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
+        validSelectedProperty = false;
         updateScreenInfo();
+    } else{ 
+        alert("Tente jogar os dados antes!");
     }
 
 }
@@ -182,11 +186,32 @@ function updateScreenInfo(){
 
     // updates de properties list
     //TODO TEST THIS!!
-    //APPEND ELEMENTS TO THE LIST
-    // let node = document.createElement("LI");                 // Create a <li> node
-    // var textnode = document.createTextNode("Water");         // Create a text node
-    // node.appendChild(textnode);                              // Append the text to <li>
-    // document.getElementById("myList").appendChild(node);
+    // remove last player's propertis from the list
+    var propertyListNode = document.getElementById("telas da opcs");
+    while (propertyListNode.firstChild) {
+        propertyListNode.removeChild(propertyListNode.firstChild);
+    }
+
+    // prints the new list
+    let node;
+    let textnode;
+
+    if((playerAtual.belongings).length == 0) {
+        node = document.createElement("option");
+        textnode = document.createTextNode("sem propriedades!");
+        node.appendChild(textnode);
+        document.getElementById("telas da opcs").appendChild(node);
+    }
+
+    else{
+        // goes through all players belongings
+        for(let i = 0; i < (playerAtual.belongings).length; i++){
+            node = document.createElement("option");
+            textnode = document.createTextNode((playerAtual.belongings[i]).nome);
+            node.appendChild(textnode);
+            document.getElementById("telas da opcs").appendChild(node);
+        }
+    }
 }
 
 function rollDice(){
@@ -205,6 +230,8 @@ function rollDice(){
 
         //  must move after roll
         movePlayer(diceOne+diceTwo);
+
+        allowBuy = true;
     }else{
         alert("Não é tua vez! Ta querendo roubar?!");
 
@@ -235,6 +262,7 @@ function movePlayer(distance){
                 if (pay == true) {
                     let receiverIndex = getPlayerIndexByName(casaAtual.owner);
                     playersVetor[receiverIndex].reciveMoney(valorPag);
+                    alert("Pagou " + valorPag + " por dar role!");
                 }
             }
         } else if (casaAtual instanceof Evento) {
@@ -277,14 +305,20 @@ function buyProperty(){
     let casaAtual = casaVetor[playerAtual.getPosition()];
     if(casaAtual instanceof Propriedade){
         if(casaAtual.owner == "bank") {
-            if(playerAtual.pay(casaAtual.valorCompra) == true){
-                casaAtual.owner = playerAtual.getName();
-                playerAtual.addProperty(casaAtual);
-                alert("Comprou!");
+            if(allowBuy == true) {
+                if(playerAtual.pay(casaAtual.valorCompra) == true){
+                    casaAtual.owner = playerAtual.getName();
+                    playerAtual.addProperty(casaAtual);
+                    alert("Comprou!");
+                }
+
+                else {
+                    alert("Faltou dinheiro");
+                }
             }
 
             else {
-                alert("Faltou dinheiro");
+                alert("Tem que rodar antes de tentar comprar!");
             }
         }
 
@@ -299,12 +333,51 @@ function buyProperty(){
 
 }
 
-function sellProperty(){
+function updateSelectedProperty(){
+    // this assumes that the player can only select
+    // his own properties
+
+    let selectedName = "_none";
+    let propertyListNode = document.getElementById("telas da opcs");
+    let selectedValue = propertyListNode.value;
+    let listSize = propertyListNode.childElementCount;
+
+    console.log(selectedValue);
+
+    if(selectedValue == "" || selectedValue == "sem propriedades!"){
+        alert("Não pode fazer ação sem selecionar propriedade válida!");
+    }
+
+    // if is a property is actually selected, find and update it
+    else {
+        for(let i = 0; i < playerAtual.belongings.length; i++){
+            if(playerAtual.belongings[i].nome == selectedValue){
+                // updates de global reference to the selected property
+                selectedProperty = playerAtual.belongings[i];
+
+                // this flag shows that the property was selected in this turn
+                validSelectedProperty = true;
+
+            } else {
+                console.log("ERRO: propriedade não encontrada na lista.");
+            }
+        }
+
+    }
+
+    //TODO remove if uncesseary - check it
+    // let auxName;
+    // for(let i = 0; i < listSize; i++){
+    //     auxName = propertyListNode.childNodes[i].firstChild.nodeValue;
+    //     console.log("got name>" + auxName + "<"+propertyListNode.value);
+    //
+    // }
 
 }
 
-function sayHi(){
-    console.log(document.getElementById("choice1").selected);
+function sellProperty(){
+
+
 }
 
 //  beggining of the execution
@@ -315,9 +388,12 @@ let turnNumber = 0;
 let playerAtual;
 let alteredPosition = false;
 let rolledDice = false;
+let allowBuy = false;
 const startingMoney = 3500;
 let diceOne = 0;
 let diceTwo = 0;
+let validSelectedProperty = false;
+let selectedProperty;
 
 // starts the game
 gameStart();
