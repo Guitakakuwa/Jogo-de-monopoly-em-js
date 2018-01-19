@@ -34,7 +34,7 @@ body {
 }
 .board div {
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
 }
 .side-row {
     display: grid;
@@ -43,20 +43,22 @@ body {
 }
 .roxo {
     height: 20%;
+    width: 99%;
     background-color: purple;
 }
 .azul-claro {
     height: 20%;
+    width: 99%;
     background-color: powderblue;
 }
 .rosa {
-    height: 95%;
+    height: 99%;
     width: 20%;
     float: right;
     background-color: pink;
 }
 .laranja {
-    height: 95%;
+    height: 99%;
     width: 20%;
     float: right;
     background-color: orange;
@@ -64,24 +66,73 @@ body {
 .vermelho {
     height: 20%;
     background-color: red;
-    width: 97%;
+    width: 99%;
 
 }
 .amarelo {
     height: 20%;
     background-color: yellow;
-    width: 97%;
+    width: 99%;
 
+}
+.verde {
+    height: 97%;
+    width: 20%;
+    background-color: green;
+    float: left;
+}
+.azul {
+    height: 97%;
+    width: 20%;
+    background-color: blue;
+    float: left;
 }
 
 .board .nome {
     border-style: none;
-    font-size: 1.1em;
+    font-size: 1em;
     text-align: center;
-    /* padding: auto; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.board .nome-SR {
+    border-style: none;
+    font-size: 1em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .side-row .nome {
+    height: 55%;
+}
+.side-column .nome {
+    height: 97%;
+    width: 55%;
+    float: left;
+}
+.side-row .nome-SR {
     height: 80%;
+}
+.side-column .nome-SR {
+    height: 97%;
+    width: 75%;
+    float: left;
+}
+.side-column .nome-SRR {
+    height: 97%;
+    width: 75%;
+    float: right;
+}
+
+.corner .nome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    height: 80%;
+    width: 97%;
 }
 
 .side-column {
@@ -94,9 +145,46 @@ body {
     width: 100%;
     height: 100%;
 }
-.corner {
-    text-align: center;
-    vertical-align: middle;
-    font-size: 1.7em;
-    line-height:;
+.corner div {
+    border-style: none;
 }
+.circle {
+    display: none;
+    border-radius:8px;
+    border:1px solid #ccc;
+    width:15px;
+    height:15px;
+    background-color: red;
+}
+.board .tokens,
+.tokens {
+    padding: 2px;
+    border-style: none;
+    display: flex;
+    justify-content: space-around;
+    height: 20%;
+    width: 97%;
+}
+.side-column .tokens-left {
+    padding: 2px;
+    border-style: none;
+    display: flex;
+    flex-flow: column;
+    float: left;
+    justify-content: space-around;
+    height: 97%;
+    width: 20%;
+}
+.side-column .tokens-right {
+    padding: 2px;
+    border-style: none;
+    display: flex;
+    flex-flow: column;
+    float: right;
+    justify-content: space-around;
+    height: 97%;
+    width: 12.5%;
+}
+/* .casa {
+    display: flex;
+} */
