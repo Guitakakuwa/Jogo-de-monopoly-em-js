@@ -92,6 +92,33 @@ function getPlayerIndexByName (name) {
     return -1;
 }
 
+function setPlayerColors(){
+    let playerColor;
+
+    //TODO change to mantin LAST POSITION BEFORE REWRITE
+    //  there is a better way to do this
+     for(let i = 0; i < playersVetor.length; i++){
+         player = playersVetor[i];
+
+         // pre set of players playerColor
+         //TODO let this be in-game customizable
+         if(i == 0) {
+             playerColor = "green";
+         } else if (i == 1) {
+             playerColor = "blue";
+         } else if (i == 2) {
+             playerColor = "red";
+         }
+
+         // goes to trhought all the board uncheking the player
+         for(let j = 0; j < casaVetor.length; j++){
+             tokenNameID = String(i+1) + "bol" + String(j);
+             document.getElementById(tokenNameID).style.backgroundColor=playerColor;
+             console.log(tokenNameID);
+         }
+     }
+}
+
 function gameStart(){
     createPlayer("Ronaldo");
     createPlayer("Geraldinho");
@@ -103,6 +130,7 @@ function gameStart(){
     updateScreenInfo();
     printNumber("?");
     printNumber2("?");
+    setPlayerColors();
 }
 
 // sets the board
@@ -131,20 +159,47 @@ function passTurn(){
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         validSelectedProperty = false;
         updateScreenInfo();
-    } else{ 
+    } else{
         alert("Tente jogar os dados antes!");
     }
 
 }
 
+function updatesPlayerToken(){
+    let player;
+    let tokenNameID;
+    let tokenElement;
+
+    //TODO change to mantin LAST POSITION BEFORE REWRITE
+    //  there is a better way to do this
+     for(let i = 0; i < playersVetor.length; i++){
+         player = playersVetor[i];
+
+         // goes to trhought all the board uncheking the player
+         for(let j = 0; j < casaVetor.length; j++){
+             tokenNameID = String(i+1) + "bol" + String(j);
+             document.getElementById(tokenNameID).style.display="none";
+             if(player.getPosition() == j) {
+                 document.getElementById(tokenNameID).style.display="block";
+             }
+
+             //console.log(tokenNameID);
+         }
+     }
+}
+
 function updateScreenInfo(){
+    // updates players name and money
     document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
+    updatesPlayerToken();
+
     // updates de properties list
     //TODO TEST THIS!!
-    // remove last player's propertis from the list
     var propertyListNode = document.getElementById("telas da opcs");
+
+    // remove last player's propertis from the list
     while (propertyListNode.firstChild) {
         propertyListNode.removeChild(propertyListNode.firstChild);
     }
@@ -205,6 +260,9 @@ function movePlayer(distance){
     if(playerAtual.isInPrision() == false) {
         playerAtual.setPosition(newPosition);
         let casaAtual = casaVetor[playerAtual.getPosition()];
+
+        // updates to show the player's new position
+        updateScreenInfo();
 
         // handles the events that happens at the new position
         if(casaAtual instanceof Propriedade) {
@@ -302,6 +360,7 @@ function updateSelectedProperty(){
     console.log(selectedValue);
 
     if(selectedValue == "" || selectedValue == "sem propriedades!"){
+        validSelectedProperty = false;
         alert("Não pode fazer ação sem selecionar propriedade válida!");
     }
 
