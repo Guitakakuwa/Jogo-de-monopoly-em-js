@@ -101,6 +101,8 @@ function gameStart(){
 
     inicializeCasas();
     updateScreenInfo();
+    printNumber("?");
+    printNumber2("?");
 }
 
 // sets the board
@@ -121,6 +123,8 @@ function inicializeCasas(){
 function passTurn(){
     if(rolledDice == true) {
         turnNumber++;
+        printNumber("?");
+        printNumber2("?");
         alteredPosition = false;
         rolledDice = false;
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
