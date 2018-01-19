@@ -5,7 +5,7 @@ let rN_choice = Math.floor(Math.random() *100 ) +0;
 if (rN_choice===0 ||rN_choice===1) {
 	return	playerAtual.sentToPrison();
 
-}else if (rN_choice==%2){
+}else if (rN_choice%2===0){
 	 rN_amount = (Math.floor(Math.random() *10 ) +1)*10;
 return playerAtual.mandatoryPay(rN_amount);
 }else {
