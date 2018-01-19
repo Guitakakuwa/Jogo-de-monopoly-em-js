@@ -304,6 +304,9 @@ function movePlayer(distance){
     let newPosition = playerAtual.getPosition() + distance;
 
     //  loops the board
+    if (newPosition >= 40) {
+        playerAtual.reciveMoney(200);
+    }
     newPosition = newPosition % casaVetor.length;
 
     if(playerAtual.isInPrision() == false) {
@@ -312,7 +315,13 @@ function movePlayer(distance){
 
         // updates to show the player's new position
         updateScreenInfo();
-        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+        if (casaAtual instanceof Propriedade && casaAtual.owner == "bank") {
+        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!\nPreço: R$    " + casaAtual.valorCompra;
+    }   else if (casaAtual instanceof Propriedade && casaAtual.owner != "bank") {
+            document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!\n Pagou aluguel de R$ " + casaAtual.calculaAluguel(diceOne + diceTwo) + " para " +  casaAtual.owner;
+        } else {
+            document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+        }
 
 
         // handles the events that happens at the new position
@@ -329,7 +338,7 @@ function movePlayer(distance){
                     let receiverIndex = getPlayerIndexByName(casaAtual.owner);
                     playersVetor[receiverIndex].reciveMoney(valorPag);
                     // alert("Pagou " + valorPag + " por dar role!");
-                    document.getElementById("game-log").innerHTML = "Pagou " + valorPag + " por ser troxa xD"
+
                 }
             }
         } else if (casaAtual instanceof Evento) {
@@ -385,8 +394,9 @@ function mandatoryPay(value){
 
         } else {
             // ALLOW PLAYER TO SELL WHAT HE WANTS
-            document.getElementById("game-log").innerHTML = "Venda algumas propreidades pra continuar no jogo!";
+            document.getElementById("game-log").innerHTML = "Venda algumas propreidades pra consegur mais " + String(value);
             mandatoryPayValue = value;
+            mandatoryPayPendency = true;
             return false;
 
         }
@@ -451,6 +461,7 @@ function updateSelectedProperty(){
 
     // if is a property is actually selected, find and update it
     else {
+        validSelectedProperty = false;
         for(let i = 0; (i < playerAtual.belongings.length) && (validSelectedProperty == false); i++){
             if(playerAtual.belongings[i].nome == selectedValue){
                 // updates de global reference to the selected property
@@ -458,8 +469,6 @@ function updateSelectedProperty(){
 
                 // this flag shows that the property was selected in this turn
                 validSelectedProperty = true;
-
-
             }
         }
 
@@ -490,6 +499,15 @@ function sellProperty(){
         playerAtual.reciveMoney((playerAtual.belongings[index].valorCompra) * 0.5);
         playerAtual.belongings.splice(index, 1);
         updateScreenInfo();
+
+        // checks for dependecys
+        if(mandatoryPayPendency == true) {
+            if(mandatoryPay(mandatoryPayValue) == true){
+                updateScreenInfo();
+                mandatoryPayValue = 0;
+                mandatoryPayPendency = false;
+            }
+        }
 
         // todo
         // belongings (use selectedProperty)
