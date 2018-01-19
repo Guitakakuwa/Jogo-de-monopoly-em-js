@@ -64,10 +64,12 @@ class Terreno extends Propriedade {
     }
 
     calculaAluguel (dado) {
-        if (statusHipoteca===true) {
+        if (this.statusHipoteca===false) {
         return (this.aluguelBase + (this.nCasas * this.aluguelPorCasa));
-    } alert("Siga sem pagar! a propriedade está hipotecada!");
-}
+    } else {
+        alert("Siga sem pagar! a propriedade está hipotecada!");
+        }
+    }
     addCasa (n) {
         this.nCasas = this.nCasas + n;
     }
@@ -94,7 +96,20 @@ class Evento extends CasaTabuleiro {
         super(position);
     }
 
-    acaoDoEvento(playerAtual){
-        console.log("chamada a funcao do evento");
+    acaoDoEvento(){
+        if (playerAtual.getPosition() === 18) {
+            lucrosDividendos ();
+            console.log("caiu em lucros e Dividendos");
+        } else if (playerAtual.getPosition() === 24) {
+            ImpostoDeRenda();
+            console.log("caiu em imposto de renda");
+        } else if (playerAtual.getPosition() === 30) {
+            sendToPrison();
+            console.log("foi pra prisão, trouxa");
+        } else {
+            SR();
+            console.log("sorte e revés");
+        }
+
     }
 }
