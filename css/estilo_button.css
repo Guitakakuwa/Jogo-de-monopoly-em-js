@@ -108,7 +108,7 @@
 .side_button_left , .side_button_right{ 
 height:70%;
 }
-
+ 
 .container_button{
 
     display: flex;
@@ -116,4 +116,21 @@ height:70%;
     height: 100%;
     width: 100%;
   padding-left:40px;
+}
+#money_show{
+  font-size: 30px;
+  margin-top: 24px;
+  color: yellow;
+}
+
+#position_show{
+  margin-top: 20px;
+margin-left: 15px;
+  color: red;
+font-size: 35px;
+}
+
+.container_position, .container_money{
+display: flex;
+
 }
