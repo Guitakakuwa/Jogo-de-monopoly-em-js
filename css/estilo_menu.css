@@ -26,8 +26,8 @@ body {
 
 #direita-menu {
     float: left;
-    background-color: #878787;
-    width: 25%;
+    background-color:#303030FF;
+    width: 28%;
     height: 100%;
     margin-top: 0;
        justify-content: center;
@@ -195,6 +195,11 @@ body {
     text-align: center;
     font-family: 'Press Start 2P', cursive;
 line-height: 40px;
+border-style: inset;
+border-width: 1px;
+height: 100px;
+margin-bottom: 10px;
+
 }
 /* .casa {
     display: flex;
