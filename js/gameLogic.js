@@ -486,7 +486,7 @@ function sellProperty(){
         // console.log(propriedades);
 
         let index = playerAtual.belongings.indexOf(selectedProperty);
-        playerAtual.owner = "bank";
+        playerAtual.belongings[index].owner = "bank";
         playerAtual.reciveMoney((playerAtual.belongings[index].valorCompra) * 0.5);
         playerAtual.belongings.splice(index, 1);
         updateScreenInfo();
