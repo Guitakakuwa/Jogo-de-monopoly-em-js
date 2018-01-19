@@ -7,7 +7,7 @@
 
 
 body {
-    height: 800px;
+    /* height: 100%; */
     margin: 0;
     margin-bottom: 0;
     margin-right: 0;
@@ -41,21 +41,21 @@ body {
     grid-template-columns: repeat(9, 1fr);
 
 }
-.roxo {
+.rosa {
     height: 20%;
     width: 99%;
-    background-color: purple;
+    background-color: pink;
 }
 .azul-claro {
     height: 20%;
     width: 99%;
     background-color: powderblue;
 }
-.rosa {
+.roxo {
     height: 99%;
     width: 20%;
     float: right;
-    background-color: pink;
+    background-color: purple;
 }
 .laranja {
     height: 99%;
@@ -184,6 +184,13 @@ body {
     justify-content: space-around;
     height: 97%;
     width: 12.5%;
+}
+#game-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
 }
 /* .casa {
     display: flex;

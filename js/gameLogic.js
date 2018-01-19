@@ -131,16 +131,16 @@ function gameStart(){
     printNumber("?");
     printNumber2("?");
     setPlayerColors();
+
 }
 
 // sets the board
 function inicializeCasas(){
     let casa = [];
 
-
-    casa[0] = new CasaTabuleiro (0);
+    casa[0] = new CasaTabuleiro (0, "Partida");
     casa[1] = new Terreno (1, 100, "Leblon", 50, 6, 50, 50);
-    casa[2] = new Evento (2);
+    casa[2] = new Evento (2, "Sorte/Revés");
     casa[3] = new Terreno (3, 60, "Avenida Presidente Vargas", 50, 2, 30, 30);
     casa[4] = new Terreno (4, 60, "Avenida Nossa Senhora de Copacabana", 50, 4, 40, 30);
     casa[5] = new Companhia (5, 200, "Companhia Ferroviária", 50, 100);
@@ -148,34 +148,34 @@ function inicializeCasas(){
     casa[7] = new Companhia (7, 200, "Companhia de Viação", 50, 100);
     casa[8] = new Terreno (8, 220, "Avenida Rebouças", 150, 18, 70, 110);
     casa[9] = new Terreno (9, 220,"Avenida 9 de Julho", 150, 20, 70, 120);
-    casa[10] = new CasaTabuleiro (10);
+    casa[10] = new CasaTabuleiro (10, "Prisão");
     casa[11] = new Terreno (11, 200, "Avenida Europa", 100, 16, 60, 100);
-    casa[12] = new Evento (12);
+    casa[12] = new Evento (12, "Sorte/Revés");
     casa[13] = new Terreno (13, 180, "Rua Augusta", 100, 14, 50, 90);
     casa[14] = new Terreno (14, 180, "Avenida Pacaembu", 100, 14, 55, 90);
     casa[15] = new Companhia (15, 150, "Companhia de Táxi", 40, 75);
-    casa[16] = new Evento (16);
+    casa[16] = new Evento (16, "Sorte/Revés");
     casa[17] = new Terreno (17, 350, "Interlagos", 200, 35, 140, 175);
-    casa[18] = new Evento (18);
+    casa[18] = new Evento (18, "Lucros e Dividendos");
     casa[19] = new Terreno (19, 400, "Morumbi", 200, 50, 150, 200);
-    casa[20] = new CasaTabuleiro (20);
+    casa[20] = new CasaTabuleiro (20, "Parada Livre");
     casa[21] = new Terreno (21, 120, "Flamengo", 50, 8, 30, 50);
-    casa[22] = new Evento (22);
+    casa[22] = new Evento (22, "Sorte/Revés");
     casa[23] = new Terreno (23, 100, "Botafogo", 50, 6, 25, 50);
-    casa[24] = new Evento (24);
+    casa[24] = new Evento (24, "Imposto de Renda");
     casa[25] = new Companhia (25, 150, "Companhia de Navegação", 40, 75);
     casa[26] = new Terreno (26, 160, "Avenida Brasil", 100, 12, 50, 60);
-    casa[27] = new Evento (27);
+    casa[27] = new Evento (27, "Sorte/Revés");
     casa[28] = new Terreno (28, 140, "Avenida Paulista", 100, 10, 40, 70);
     casa[29] = new Terreno (29, 140, "Jardim Europa", 100, 10, 40, 70);
-    casa[30] = new Evento(30);
+    casa[30] = new Evento(30, "Sorte/Revés");
     casa[31] = new Terreno (31, 260, "Copacabana", 150, 22, 80, 130);
     casa[32] = new Companhia (32, 200, "Companhia de Aviação", 50, 100);
     casa[33] = new Terreno (33, 320, "Avenida Viera Souto", 200, 28, 120, 160);
     casa[34] = new Terreno (34, 300, "Avenida Atlântica", 200, 26, 120, 160);
     casa[35] = new Companhia (35, 200, "Companhia de Táxi Aéreo", 50, 100);
     casa[36] = new Terreno (35, 300, "Ipanema", 200, 24, 120, 180);
-    casa[37] = new Evento (37);
+    casa[37] = new Evento (37, "Sorte/Revés");
     casa[38] = new Terreno (38, 280, "Jardim Paulista", 150, 24, 100, 140);
     casa[39] = new Terreno (39, 260, "Brooklin", 150, 22, 90, 130);
 
@@ -202,8 +202,10 @@ function passTurn(){
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         validSelectedProperty = false;
         updateScreenInfo();
+        document.getElementById("game-log").innerHTML = "Jogue os dados!"
     } else{
-        alert("Tente jogar os dados antes!");
+        // alert("Tente jogar os dados antes!");
+        document.getElementById("game-log").innerHTML = "Jogue os dados antes."
     }
 
 }
@@ -288,7 +290,8 @@ function rollDice(){
 
         allowBuy = true;
     }else{
-        alert("Não é tua vez! Ta querendo roubar?!");
+        // alert("Não é tua vez! Ta querendo roubar?!");
+        document.getElementById("game-log").innerHTML = "Você já jogou os dados dessa vez!"
 
     }
     updateScreenInfo();
@@ -306,6 +309,8 @@ function movePlayer(distance){
 
         // updates to show the player's new position
         updateScreenInfo();
+        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+
 
         // handles the events that happens at the new position
         if(casaAtual instanceof Propriedade) {
@@ -320,7 +325,8 @@ function movePlayer(distance){
                 if (pay == true) {
                     let receiverIndex = getPlayerIndexByName(casaAtual.owner);
                     playersVetor[receiverIndex].reciveMoney(valorPag);
-                    alert("Pagou " + valorPag + " por dar role!");
+                    // alert("Pagou " + valorPag + " por dar role!");
+                    document.getElementById("game-log").innerHTML = "Pagou " + valorPag + " por ser troxa xD"
                 }
             }
         } else if (casaAtual instanceof Evento) {
@@ -367,16 +373,19 @@ function buyProperty(){
                 if(playerAtual.pay(casaAtual.valorCompra) == true){
                     casaAtual.owner = playerAtual.getName();
                     playerAtual.addProperty(casaAtual);
-                    alert("Comprou!");
+                    // alert("Comprou!");
+                    document.getElementById("game-log").innerHTML = "Voce comprou " + casaAtual.nome + "!";
                 }
 
                 else {
-                    alert("Faltou dinheiro");
+                    // alert("Faltou dinheiro");
+                    document.getElementById("game-log").innerHTML = "Voce não tem dinheiro suficiente!"
                 }
             }
 
             else {
-                alert("Tem que rodar antes de tentar comprar!");
+                // alert("Tem que rodar antes de tentar comprar!");
+                document.getElementById("game-log").innerHTML = "Jogue o dado antes de tentar comprar!"
             }
         }
 
@@ -386,7 +395,8 @@ function buyProperty(){
     }
 
     else {
-        alert("Casa atual não é uma propeidade");
+        // alert("Casa atual não é uma propeidade");
+        document.getElementById("game-log").innerHTML = "Casa atual não é um propriedade!"
     }
 
 }

@@ -1,7 +1,14 @@
 class CasaTabuleiro {
-    constructor (position) {
+    constructor (position, nome) {
     this.position = position;
+    this.nome = nome;
     }
+    set nome (nome) {
+        this._nome = nome;
+    };
+    get nome () {
+        return this._nome;
+    };
 
     get Position () {
         return this._position;
@@ -12,19 +19,13 @@ class CasaTabuleiro {
 class Propriedade extends CasaTabuleiro {
     constructor (position, valorCompra, nome, valorHipoteca) {
 
-        super(position);
+        super(position, nome);
         this.valorCompra = valorCompra;
-        this.nome = nome;
         this.owner = "bank";
         this.statusHipoteca = false;
 
     }
-    set nome (nome) {
-        this._nome = nome;
-    }
-    get nome () {
-        return this._nome;
-    };
+
     get valorHipoteca () {
         return this.valorHipoteca;
     }
@@ -92,8 +93,8 @@ class Companhia extends Propriedade {
 }
 
 class Evento extends CasaTabuleiro {
-    constructor(position) {
-        super(position);
+    constructor(position, nome) {
+        super(position, nome);
     }
 
     acaoDoEvento(){
@@ -101,7 +102,7 @@ class Evento extends CasaTabuleiro {
             lucrosDividendos ();
             console.log("caiu em lucros e Dividendos");
         } else if (playerAtual.getPosition() === 24) {
-            ImpostoDeRenda();
+            impostoDeRenda();
             console.log("caiu em imposto de renda");
         } else if (playerAtual.getPosition() === 30) {
             sendToPrison();
