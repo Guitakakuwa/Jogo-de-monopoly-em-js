@@ -2,6 +2,7 @@ let rN_amount
 function SR () {
 let rN_choice = Math.floor(Math.random() *100 ) +0;
 
+
     if (rN_choice===0 || rN_choice === 1) {
     	sendToPrison();
         updateScreenInfo();
@@ -13,6 +14,7 @@ let rN_choice = Math.floor(Math.random() *100 ) +0;
     	rN_amount = (Math.floor(Math.random() *10 ) +1)*10;
         playerAtual.reciveMoney(rN_amount);
     }
+
 }
 
 
