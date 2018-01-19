@@ -134,3 +134,13 @@ font-size: 35px;
 display: flex;
 
 }
+
+#TDO{
+  height: 100px;
+  width: 800px;
+}
+#telas_da_opcs{
+  margin-left:15px;
+  height: 100%;
+  width: 45%;
+}
