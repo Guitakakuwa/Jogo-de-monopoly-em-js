@@ -125,6 +125,8 @@ function passTurn(){
         rolledDice = false;
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         updateScreenInfo();
+    } else{ 
+        alert("Tente jogar os dados antes!");
     }
 
 }
