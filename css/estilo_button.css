@@ -22,20 +22,20 @@
 }
 
 .space_button{
-  height: 90px;
- width: 180px;
+
+ width: 81%;
 }
 
 .space_button_dice{
   height: auto;
   display:flex;
-  margin-bottom:5%; 
-  margin-top: 5%;
+  margin-bottom:4%; 
+  margin-top: 7%;
   margin-left: 13%;
 
 }
 #placeholder ,#placeholder2  {
-  height: 67%;
+  height: 47%;
   width: 2em;
   border: 0.15em solid gray;
   border-radius: 25%;  
@@ -51,13 +51,13 @@
 } 
 
 #button_roll{
-  padding: 20px;
+  padding: 1em;
   font-size: 30px;
 } 
 
   .button_Rolar_dados {
     display: flex;
-    padding: 25px 45px;
+    padding: 12% 25%;
     font-size: 15px;
     text-align: center;
     button_Rolar_dados cursor: pointer;
@@ -69,8 +69,8 @@
     box-shadow: 0 9px #999;
     justify-content: center;
     width: 90%;
-      margin-top: 7.5px;
-      margin-bottom: 20px;
+      margin-top: 7%;
+      margin-bottom: 10%;
       white-space: nowrap;
        font-family: 'Press Start 2P', cursive;
 
@@ -124,6 +124,7 @@
 
 .side_button_left , .side_button_right{ 
 height:70%;
+width: 50%
 }
  
 .container_button{
@@ -131,7 +132,7 @@ height:70%;
     flex-direction: row;
     height: 100%;
   padding-left:7%;
-margin-left: 11%;
+margin-left: 4%;
 margin-top : 20px;
 }
 #money_show{
@@ -151,7 +152,7 @@ font-size: 125%;
 
 .container_position, .container_money{
 display: flex;
-margin-left: 15px;
+margin-left: 8%;
  font-family: 'Press Start 2P', cursive;
 
 }
@@ -163,9 +164,9 @@ margin-left: 15px;
 #telas_da_opcs{
   height: 100%;
   font-size: 18px;
-  margin-left: 40px;
+  margin-left: 6%;
    font-family: 'Press Start 2P', cursive;
-   margin-top: 8px;
+   margin-top: 3%;
    width: 89%;
 
 }

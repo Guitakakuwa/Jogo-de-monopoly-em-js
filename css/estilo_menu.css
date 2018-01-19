@@ -195,11 +195,11 @@ body {
     font-weight: bold;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
-line-height: 40px;
+line-height: 170%;
 border-style: inset;
 border-width: 1px;
-height: 100px;
-margin-bottom: 10px;
+height: 14%;
+margin-bottom: 5%;
 
 }
 /* .casa {
