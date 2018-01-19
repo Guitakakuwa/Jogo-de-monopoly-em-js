@@ -131,6 +131,8 @@ function passTurn(){
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         validSelectedProperty = false;
         updateScreenInfo();
+    } else{ 
+        alert("Tente jogar os dados antes!");
     }
 
 }
