@@ -304,6 +304,9 @@ function movePlayer(distance){
     let newPosition = playerAtual.getPosition() + distance;
 
     //  loops the board
+    if (newPosition >= 40) {
+        playerAtual.reciveMoney(200);
+    }
     newPosition = newPosition % casaVetor.length;
 
     if(playerAtual.isInPrision() == false) {
@@ -312,7 +315,13 @@ function movePlayer(distance){
 
         // updates to show the player's new position
         updateScreenInfo();
-        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+        if (casaAtual instanceof Propriedade && casaAtual.owner == "bank") {
+        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!\nPreço: R$    " + casaAtual.valorCompra;
+    }   else if (casaAtual instanceof Propriedade && casaAtual.owner != "bank") {
+            document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!\n Pagou aluguel de R$ " + casaAtual.calculaAluguel(diceOne + diceTwo) + " para " +  casaAtual.owner;
+        } else {
+            document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+        }
 
 
         // handles the events that happens at the new position
@@ -329,7 +338,7 @@ function movePlayer(distance){
                     let receiverIndex = getPlayerIndexByName(casaAtual.owner);
                     playersVetor[receiverIndex].reciveMoney(valorPag);
                     // alert("Pagou " + valorPag + " por dar role!");
-                    document.getElementById("game-log").innerHTML = "Pagou " + valorPag + " por ser troxa xD"
+
                 }
             }
         } else if (casaAtual instanceof Evento) {
