@@ -82,6 +82,16 @@ function createPlayer(name){
     (playersVetor).push(newPlayer);
 }
 
+function getPlayerIndexByName (name) {
+    for(let i = 0; i < playersVetor.length; i++){
+        if(playersVetor[i] == name) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 function gameStart(){
     createPlayer("Ronaldo");
     createPlayer("Geraldinho");
@@ -90,7 +100,7 @@ function gameStart(){
     playerAtual = playersVetor[0];
 
     inicializeCasas();
-
+    updateScreenInfo();
 }
 
 // sets the board
@@ -103,8 +113,8 @@ function inicializeCasas(){
     casaVetor.push(propriedadeTeste2);
 
     for(let i = 2; i < 40; i++) {
-         casaVazia = new CasaTabuleiro(i);
-         casaVetor.push(casaVazia);
+        casaVazia = new CasaTabuleiro(i);
+        casaVetor.push(casaVazia);
     }
 }
 
@@ -119,7 +129,16 @@ function passTurn(){
 }
 
 function updateScreenInfo(){
+    document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
+    document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
+    // updates de properties list
+    //TODO TEST THIS!!
+    //APPEND ELEMENTS TO THE LIST
+    // let node = document.createElement("LI");                 // Create a <li> node
+    // var textnode = document.createTextNode("Water");         // Create a text node
+    // node.appendChild(textnode);                              // Append the text to <li>
+    // document.getElementById("myList").appendChild(node);
 }
 
 function rollDice(){
@@ -139,6 +158,7 @@ function rollDice(){
         //  must move after roll
         movePlayer(diceOne+diceTwo);
     }
+    updateScreenInfo();
 }
 
 function movePlayer(distance){
@@ -147,9 +167,29 @@ function movePlayer(distance){
     //  loops the board
     newPosition = newPosition % casaVetor.length;
 
-
     if(playerAtual.isInPrision() == false) {
         playerAtual.setPosition(newPosition);
+        let casaAtual = casaVetor[playerAtual.getPosition()];
+
+        // handles the events that happens at the new position
+        if(casaAtual instanceof Propriedade) {
+            // check if property not for sale
+            if(casaAtual.owner != "bank" &&
+            casaAtual.owner != playerAtual.getName()) {
+                console.log("landed on owned by others property");
+                let valorPag = casaAtual.calculaAluguel(diceOne+diceTwo);
+                let pay = mandatoryPay(valorPag);
+
+                // the money must be transfered to the receiver
+                if (pay == true) {
+                    let receiverIndex = getPlayerIndexByName(casaAtual.owner);
+                    playersVetor[receiverIndex].reciveMoney(valorPag);
+                }
+            }
+        } else if (casaAtual instanceof Evento) {
+            //Tcalls the action of the event
+            casaAtual.acaoDoEvento(playerAtual);
+        }
     }
 
     //  if players is in prision
@@ -162,6 +202,22 @@ function movePlayer(distance){
         else{
             playerAtual.prisionTime -= 1;
         }
+    }
+}
+
+// makes a player do a mandatory pay. it he has no money, he loses
+function mandatoryPay(value){
+    console.log("mandatoryPay of value: " + value);
+    if(playerAtual.pay(value) == true){
+        console.log("sucessful mandatoryPay");
+        return true;
+    }
+
+    // player can sell properties to stay in gameS
+    // or player is removed
+    else {
+        //TODO implement this feature
+        return false;
     }
 }
 
@@ -194,6 +250,10 @@ function buyProperty(){
 
 function sellProperty(){
 
+}
+
+function sayHi(){
+    console.log(document.getElementById("choice1").selected);
 }
 
 //  beggining of the execution

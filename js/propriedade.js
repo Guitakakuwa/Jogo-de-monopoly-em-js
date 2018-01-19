@@ -56,7 +56,7 @@ class Terreno extends Propriedade {
     get aluguel () {
         return this.calculaAluguel();
     }
-    calculaAluguel () {
+    calculaAluguel (dado) {
         return (this.aluguelBase + (this.nCasas * this.aluguelPorCasa));
     }
     addCasa (n) {
@@ -76,5 +76,15 @@ class Companhia extends Propriedade {
 
     calculaAluguel(dado) {
         return (this.multiplicador * dado);
+    }
+}
+
+class Evento extends CasaTabuleiro {
+    constructor(position) {
+        super(position);
+    }
+
+    acaoDoEvento(playerAtual){
+        console.log("chamada a funcao do evento");
     }
 }
