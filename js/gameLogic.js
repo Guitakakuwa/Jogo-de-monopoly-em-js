@@ -193,8 +193,9 @@ function inicializeCasas(){
 }
 
 function passTurn(){
-    if(rolledDice == true) {
+    if(rolledDice == true && mandatoryPayPendency == false) {
         turnNumber++;
+        mandatoryPayPendency = false;
         allowBuy = false;
         printNumber("?");
         printNumber2("?");
@@ -373,9 +374,20 @@ function mandatoryPay(value){
         if(playerNetValue < value) {
             //  TODO IMPLEMENT PLAYER LOSS
             //  sells everything and remove player
+            for(let i = 0; i < playerAtual.belongings.length; i++){
+                playerAtual.belongings[i].owner = "bank";
+
+            }
+            playerAtual.money -= value;
+            document.getElementById("game-log").innerHTML = "Faliu! Banco recolheu propriedades!";
+            updateScreenInfo();
+            playerAtual.inGame = false;
 
         } else {
             // ALLOW PLAYER TO SELL WHAT HE WANTS
+            document.getElementById("game-log").innerHTML = "Venda algumas propreidades pra continuar no jogo!";
+            mandatoryPayValue = value;
+            return false;
 
         }
 
@@ -425,7 +437,7 @@ function updateSelectedProperty(){
     // his own properties
 
     let selectedName = "_none";
-    let propertyListNode = document.getElementById("telas_da_ opcs");
+    let propertyListNode = document.getElementById("telas_da_opcs");
     let selectedValue = propertyListNode.value;
     let listSize = propertyListNode.childElementCount;
 
@@ -483,6 +495,8 @@ let diceOne = 0;
 let diceTwo = 0;
 let validSelectedProperty = false;
 let selectedProperty;
+let mandatoryPayPendency = false;
+let mandatoryPayValue = 0;
 
 // starts the game
 gameStart();
