@@ -128,10 +128,10 @@ function gameStart(){
     playerAtual = playersVetor[0];
 
     inicializeCasas();
-    updateScreenInfo();
     printNumber("?");
     printNumber2("?");
     setPlayerColors();
+    updateScreenInfo();
 
 }
 
@@ -237,6 +237,7 @@ function updatesPlayerToken(){
 function updateScreenInfo(){
     // updates players name and money
     document.getElementById('position_show').innerHTML = playerAtual.getName();
+    document.getElementById('position_show').style.color = document.getElementById(String(1 +  getPlayerIndexByName(playerAtual.getName())) + "bol0").style.backgroundColor;
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
     updatesPlayerToken();
