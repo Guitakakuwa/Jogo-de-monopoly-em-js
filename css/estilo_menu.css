@@ -3,8 +3,7 @@
     flex-direction: row;
     height: 800px;
     width: 100%;
-}
-
+       }
 
 body {
     /* height: 100%; */
@@ -31,6 +30,7 @@ body {
     width: 25%;
     height: 100%;
     margin-top: 0;
+       justify-content: center;
 }
 .board div {
     border-style: solid;
@@ -186,11 +186,15 @@ body {
     width: 12.5%;
 }
 #game-log {
+    color: #FFFFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 1em;
     font-weight: bold;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+
 }
 /* .casa {
     display: flex;

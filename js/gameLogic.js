@@ -292,7 +292,7 @@ function rollDice(){
         allowBuy = true;
     }else{
         // alert("Não é tua vez! Ta querendo roubar?!");
-        document.getElementById("game-log").innerHTML = "Você já jogou os dados dessa vez!"
+        document.getElementById("game-log").innerHTML = "Você ja jagou nessa rodada!"
 
     }
     updateScreenInfo();
@@ -408,7 +408,7 @@ function buyProperty(){
         }
 
         else{
-            alert("Esta propriedade já possui dono");
+            document.getElementById("game-log").innerHTML ="Esta propriedade já possui dono!"
         }
     }
 
