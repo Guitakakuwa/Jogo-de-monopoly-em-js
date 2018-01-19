@@ -6,16 +6,20 @@
 }
 
 .Player_Turn {
-  margin-top: 20px;
-  font-size: 30px;
-  font-family: 'Roboto Slab', serif;
+  margin-top:30px;
+  font-size: 15px;
+  border-left: 20px;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
 }
 
+
 .money_show {
-  margin-top: 20px;
+  margin-top: 30px;
   color: #FFE056FF;
-      font-size: 30px;
-      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+ font-family: 'Press Start 2P', cursive;
+
 }
 
 .space_button{
@@ -26,26 +30,29 @@
 .space_button_dice{
   height: auto;
   display:flex;
-  margin:8%;
+  margin-bottom:5%; 
   margin-top: 5%;
   margin-left: 40px;
 
 }
 #placeholder ,#placeholder2  {
-  height: 20px;
-  width: 20px;
+  height: 40px;
+  width: 40px;
   margin-left: : 50px ;
-  border: 1px solid gray;
+  border: 2px solid gray;
   border-radius: 10px;  
-  font-size:20px;
+  font-size:30px;
   text-align: center;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  margin-top: 10px;
+
 
 
 }    .button_Rolar_dados {
     display: flex;
-    padding: 15px 25px;
-    font-size: 24px;
+    padding: 25px 45px;
+    font-size: 15px;
     text-align: center;
     button_Rolar_dados cursor: pointer;
     outline: none;
@@ -55,10 +62,12 @@
     border-radius: 15px;
     box-shadow: 0 9px #999;
     justify-content: center;
-    width: 70%;
+    width: 90%;
       margin-top: 7.5px;
       margin-bottom: 20px;
       white-space: nowrap;
+       font-family: 'Press Start 2P', cursive;
+
 
 }
 
@@ -112,28 +121,34 @@ height:70%;
 }
  
 .container_button{
-
     display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
   padding-left:40px;
-margin-left: 70px;}
+margin-left: 70px;
+margin-top : 20px;
+}
 #money_show{
-  font-size: 30px;
-  margin-top: 24px;
+  margin-left:5px;
+  margin-top: 30px;
   color: yellow;
+  font-size: 20px;
+
 }
 
 #position_show{
-  margin-top: 20px;
+  margin-top: 26px;
 margin-left: 15px;
   color: red;
-font-size: 35px;
+font-size: 20px;
+
 }
 
 .container_position, .container_money{
 display: flex;
+margin-left: 15px;
+ font-family: 'Press Start 2P', cursive;
 
 }
 
@@ -142,11 +157,13 @@ display: flex;
   width: 800px;
 }
 #telas_da_opcs{
-  margin-left:15px;
   height: 100%;
-  width: 45%;
-  font-size: 25px;
-  margin-left: 90px;
+  width: 60%;
+  font-size: 18px;
+  margin-left: 40px;
+   font-family: 'Press Start 2P', cursive;
+   margin-top: 8px;
+
 }
 
 
