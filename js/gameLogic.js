@@ -240,7 +240,7 @@ function updateScreenInfo(){
 
     // updates de properties list
     //TODO TEST THIS!!
-    var propertyListNode = document.getElementById("telas da opcs");
+    var propertyListNode = document.getElementById("telas_da_opcs");
 
     // remove last player's propertis from the list
     while (propertyListNode.firstChild) {
@@ -255,7 +255,7 @@ function updateScreenInfo(){
         node = document.createElement("option");
         textnode = document.createTextNode("sem propriedades!");
         node.appendChild(textnode);
-        document.getElementById("telas da opcs").appendChild(node);
+        document.getElementById("telas_da_opcs").appendChild(node);
     }
 
     else{
@@ -264,7 +264,7 @@ function updateScreenInfo(){
             node = document.createElement("option");
             textnode = document.createTextNode((playerAtual.belongings[i]).nome);
             node.appendChild(textnode);
-            document.getElementById("telas da opcs").appendChild(node);
+            document.getElementById("telas_da_opcs").appendChild(node);
         }
     }
 }
@@ -353,7 +353,23 @@ function mandatoryPay(value){
     // player can sell properties to stay in gameS
     // or player is removed
     else {
-        //TODO implement this feature
+        //TODO TESTE THIS
+        let playerNetValue = playerAtual.getMoney();
+
+        // adds the player land value
+        for(let i = 0; i < playerAtual.belongings.length; i++){
+            playerNetValue += (playerAtual.belongings[i].valorCompra)/2;
+        }
+
+        // if the player can pay saying, let him or her
+        if(playerNetValue < value) {
+            //  TODO IMPLEMENT PLAYER LOSS
+            //  sells everything and remove player
+
+        } else {
+            // ALLOW PLAYER TO SELL WHAT HE WANTS
+        }
+
         return false;
     }
 }
@@ -396,7 +412,7 @@ function updateSelectedProperty(){
     // his own properties
 
     let selectedName = "_none";
-    let propertyListNode = document.getElementById("telas da opcs");
+    let propertyListNode = document.getElementById("telas_da_ opcs");
     let selectedValue = propertyListNode.value;
     let listSize = propertyListNode.childElementCount;
 
