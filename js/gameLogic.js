@@ -115,7 +115,7 @@ function setPlayerColors(){
          for(let j = 0; j < casaVetor.length; j++){
              tokenNameID = String(i+1) + "bol" + String(j);
              document.getElementById(tokenNameID).style.backgroundColor=playerColor;
-             console.log(tokenNameID);
+             // console.log(tokenNameID);
          }
      }
 }
@@ -369,6 +369,7 @@ function mandatoryPay(value){
 
         } else {
             // ALLOW PLAYER TO SELL WHAT HE WANTS
+
         }
 
         return false;
