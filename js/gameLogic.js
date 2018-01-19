@@ -7,6 +7,7 @@ function Player (name, id) {
     this.position = 0;
     this.playerID = id;
     this.belongings = [];
+    this.inGame = true;
 
     this.getName = function() {
         return this.name;
@@ -121,7 +122,7 @@ function setPlayerColors(){
 
 function gameStart(){
     createPlayer("Ronaldo");
-    createPlayer("Geraldinho");
+    createPlayer("Geraldo");
     createPlayer("Jamires");
 
     playerAtual = playersVetor[0];
@@ -233,7 +234,7 @@ function updatesPlayerToken(){
 
 function updateScreenInfo(){
     // updates players name and money
-    document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
+    document.getElementById('position_show').innerHTML = playerAtual.getName();
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
     updatesPlayerToken();
