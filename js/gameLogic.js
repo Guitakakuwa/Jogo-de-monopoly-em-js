@@ -135,17 +135,60 @@ function gameStart(){
 
 // sets the board
 function inicializeCasas(){
-    let propreidadeTeste = new Companhia(0, 700,300,"Carro do Vallone", 9);
-    let propriedadeTeste2 = new CasaTabuleiro(1);
-    let casaVazia;
+    let casa = [];
 
-    casaVetor.push(propreidadeTeste);
-    casaVetor.push(propriedadeTeste2);
 
-    for(let i = 2; i < 40; i++) {
-        casaVazia = new CasaTabuleiro(i);
-        casaVetor.push(casaVazia);
+    casa[0] = new CasaTabuleiro (0);
+    casa[1] = new Terreno (1, 100, "Leblon", 50, 6, 50, 50);
+    casa[2] = new Evento (2);
+    casa[3] = new Terreno (3, 60, "Avenida Presidente Vargas", 50, 2, 30, 30);
+    casa[4] = new Terreno (4, 60, "Avenida Nossa Senhora de Copacabana", 50, 4, 40, 30);
+    casa[5] = new Companhia (5, 200, "Companhia Ferroviária", 50, 100);
+    casa[6] = new Terreno (6, 240, "Avenida Brigadeiro Faria Lima", 150, 20, 80, 120);
+    casa[7] = new Companhia (7, 200, "Companhia de Viação", 50, 100);
+    casa[8] = new Terreno (8, 220, "Avenida Rebouças", 150, 18, 70, 110);
+    casa[9] = new Terreno (9, 220,"Avenida 9 de Julho", 150, 20, 70, 120);
+    casa[10] = new CasaTabuleiro (10);
+    casa[11] = new Terreno (11, 200, "Avenida Europa", 100, 16, 60, 100);
+    casa[12] = new Evento (12);
+    casa[13] = new Terreno (13, 180, "Rua Augusta", 100, 14, 50, 90);
+    casa[14] = new Terreno (14, 180, "Avenida Pacaembu", 100, 14, 55, 90);
+    casa[15] = new Companhia (15, 150, "Companhia de Táxi", 40, 75);
+    casa[16] = new Evento (16);
+    casa[17] = new Terreno (17, 350, "Interlagos", 200, 35, 140, 175);
+    casa[18] = new Evento (18);
+    casa[19] = new Terreno (19, 400, "Morumbi", 200, 50, 150, 200);
+    casa[20] = new CasaTabuleiro (20);
+    casa[21] = new Terreno (21, 120, "Flamengo", 50, 8, 30, 50);
+    casa[22] = new Evento (22);
+    casa[23] = new Terreno (23, 100, "Botafogo", 50, 6, 25, 50);
+    casa[24] = new Evento (24);
+    casa[25] = new Companhia (25, 150, "Companhia de Navegação", 40, 75);
+    casa[26] = new Terreno (26, 160, "Avenida Brasil", 100, 12, 50, 60);
+    casa[27] = new Evento (27);
+    casa[28] = new Terreno (28, 140, "Avenida Paulista", 100, 10, 40, 70);
+    casa[29] = new Terreno (29, 140, "Jardim Europa", 100, 10, 40, 70);
+    casa[30] = new Evento(30);
+    casa[31] = new Terreno (31, 260, "Copacabana", 150, 22, 80, 130);
+    casa[32] = new Companhia (32, 200, "Companhia de Aviação", 50, 100);
+    casa[33] = new Terreno (33, 320, "Avenida Viera Souto", 200, 28, 120, 160);
+    casa[34] = new Terreno (34, 300, "Avenida Atlântica", 200, 26, 120, 160);
+    casa[35] = new Companhia (35, 200, "Companhia de Táxi Aéreo", 50, 100);
+    casa[36] = new Terreno (35, 300, "Ipanema", 200, 24, 120, 180);
+    casa[37] = new Evento (37);
+    casa[38] = new Terreno (38, 280, "Jardim Paulista", 150, 24, 100, 140);
+    casa[39] = new Terreno (39, 260, "Brooklin", 150, 22, 90, 130);
+
+    for(let i = 0; i < 40; i++) {
+        casaVetor.push(casa[i]);
     }
+
+
+
+
+
+
+
 }
 
 function passTurn(){
