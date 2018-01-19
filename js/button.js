@@ -13,3 +13,8 @@ document.getElementById("button_turn").addEventListener("click", function(){
 });
 
 
+ function PlaySound(melody) {
+        var path = "audio/";
+        var snd = new Audio(path + "Uno_grito" + ".mp3");
+        snd.play();
+    }
