@@ -10,7 +10,7 @@ class CasaTabuleiro {
 }
 
 class Propriedade extends CasaTabuleiro {
-    constructor (position, valorCompra, valorVenda, nome) {
+    constructor (position, valorCompra, valorVenda, nome,statusHipoteca) {
 
         super(position);
         this.valorCompra = valorCompra;
@@ -31,6 +31,12 @@ class Propriedade extends CasaTabuleiro {
     get owner () {
         return this._owner;
     };
+    set statusHipoteca() {
+        this._statusHipoteca = statusHipoteca; 
+    }
+    get statusHipoteca(){
+        return this._statusHipoteca;
+    }
     cobrarVisitante (valor, owner, visitante) {
         owner.addMoney (valor);
         visitante.removeMoney (valor);

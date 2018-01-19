@@ -126,6 +126,7 @@ function passTurn(){
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         updateScreenInfo();
     }
+
 }
 
 function updateScreenInfo(){
@@ -149,6 +150,9 @@ function rollDice(){
 
         //  must move after roll
         movePlayer(diceOne+diceTwo);
+    }else{
+        alert("Não é tua vez! Ta querendo roubar?!");
+    
     }
     updateScreenInfo();
 }
@@ -221,21 +225,21 @@ function buyProperty(){
             if(playerAtual.pay(casaAtual.valorCompra) == true){
                 casaAtual.owner = playerAtual.getName();
                 playerAtual.addProperty(casaAtual);
-                console.log("comprou!");
+                alert("Comprou!");
             }
 
             else {
-                console.log("faltou dinheiro");
+                alert("Faltou dinheiro");
             }
         }
 
         else{
-            console.log("esta propriedade já possui dono");
+            alert("Esta propriedade já possui dono");
         }
     }
 
     else {
-        console.log("Casa atual não é uma propeidade");
+        alert("Casa atual não é uma propeidade");
     }
 
 }

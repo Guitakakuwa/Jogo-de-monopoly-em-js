@@ -23,15 +23,8 @@ function printNumber2(number2) {
     placeholder2.innerHTML = number2;
 }
 
-let button = document.getElementById('button');
-
-button.onclick = function() {
+let button_roll = document.getElementById('button_roll');
+button_roll.onclick = function() {
     rollDice();
 };
 
-
-function VerifyEquals(dice1,dice2) {
-	if (dice1===dice2) {
-		return true;
-	}
-}
