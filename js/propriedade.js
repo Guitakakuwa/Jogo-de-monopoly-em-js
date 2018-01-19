@@ -10,14 +10,14 @@ class CasaTabuleiro {
 }
 
 class Propriedade extends CasaTabuleiro {
-    constructor (position, valorCompra, valorVenda, nome,statusHipoteca) {
+    constructor (position, valorCompra, nome, valorHipoteca) {
 
         super(position);
         this.valorCompra = valorCompra;
-        this.valorVenda = valorVenda;
         this.nome = nome;
         this.owner = "bank";
         this.statusHipoteca = false;
+
     }
     set nome (nome) {
         this._nome = nome;
@@ -25,6 +25,9 @@ class Propriedade extends CasaTabuleiro {
     get nome () {
         return this._nome;
     };
+    get valorHipoteca () {
+        return this.valorHipoteca;
+    }
 
     set owner (newOwner) {
         this._owner = newOwner;
@@ -33,7 +36,7 @@ class Propriedade extends CasaTabuleiro {
         return this._owner;
     };
     /*set statusHipoteca() {
-        this._statusHipoteca = statusHipoteca; 
+        this._statusHipoteca = statusHipoteca;
     }
     get statusHipoteca(){
         return this._statusHipoteca;
@@ -47,9 +50,9 @@ class Propriedade extends CasaTabuleiro {
 
 }
 class Terreno extends Propriedade {
-    constructor(position, valorCompra, valorVenda, nome, precoDaCasa, aluguelBase, aluguelPorCasa) {
+    constructor(position, valorCompra, nome, precoDaCasa, aluguelBase, aluguelPorCasa, valorHipoteca) {
 
-        super (position, valorCompra, valorVenda, nome);
+        super (position, valorCompra, nome, valorHipoteca);
         this.precoDaCasa = precoDaCasa;
         this.nCasas = 0;
         this.aluguelBase = aluguelBase;
@@ -59,6 +62,7 @@ class Terreno extends Propriedade {
     get aluguel () {
         return this.calculaAluguel();
     }
+
     calculaAluguel (dado) {
         if (statusHipoteca===true) {
         return (this.aluguelBase + (this.nCasas * this.aluguelPorCasa));
@@ -74,8 +78,8 @@ class Terreno extends Propriedade {
 
 
 class Companhia extends Propriedade {
-    constructor(position, valorCompra, valorVenda, nome, multiplicador) {
-        super (position, valorCompra, valorVenda, nome);
+    constructor(position, valorCompra, nome, multiplicador, valorHipoteca) {
+        super (position, valorCompra, nome, valorHipoteca);
         this.multiplicador = multiplicador;
 
     }
