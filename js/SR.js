@@ -3,6 +3,7 @@ function SR () {
 let rN_choice = Math.floor(Math.random() *100 ) +0;
 
 
+
     if (rN_choice===0 || rN_choice === 1) {
     	sendToPrison();
         updateScreenInfo();

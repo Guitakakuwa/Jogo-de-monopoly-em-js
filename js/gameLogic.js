@@ -7,6 +7,7 @@ function Player (name, id) {
     this.position = 0;
     this.playerID = id;
     this.belongings = [];
+    this.inGame = true;
 
     this.getName = function() {
         return this.name;
@@ -114,14 +115,14 @@ function setPlayerColors(){
          for(let j = 0; j < casaVetor.length; j++){
              tokenNameID = String(i+1) + "bol" + String(j);
              document.getElementById(tokenNameID).style.backgroundColor=playerColor;
-             console.log(tokenNameID);
+             // console.log(tokenNameID);
          }
      }
 }
 
 function gameStart(){
     createPlayer("Ronaldo");
-    createPlayer("Geraldinho");
+    createPlayer("Geraldo");
     createPlayer("Jamires");
 
     playerAtual = playersVetor[0];
@@ -235,7 +236,7 @@ function updatesPlayerToken(){
 
 function updateScreenInfo(){
     // updates players name and money
-    document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
+    document.getElementById('position_show').innerHTML = playerAtual.getName();
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
     updatesPlayerToken();
@@ -374,6 +375,7 @@ function mandatoryPay(value){
 
         } else {
             // ALLOW PLAYER TO SELL WHAT HE WANTS
+
         }
 
         return false;
