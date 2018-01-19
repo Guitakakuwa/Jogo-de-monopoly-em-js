@@ -294,7 +294,7 @@ function rollDice(){
         allowBuy = true;
     }else{
         // alert("Não é tua vez! Ta querendo roubar?!");
-        document.getElementById("game-log").innerHTML = "Você já jogou os dados dessa vez!"
+        document.getElementById("game-log").innerHTML = "Você ja jagou nessa rodada!"
 
     }
     updateScreenInfo();
@@ -421,7 +421,7 @@ function buyProperty(){
         }
 
         else{
-            alert("Esta propriedade já possui dono");
+            document.getElementById("game-log").innerHTML ="Esta propriedade já possui dono!"
         }
     }
 
@@ -445,12 +445,13 @@ function updateSelectedProperty(){
 
     if(selectedValue == "" || selectedValue == "sem propriedades!"){
         validSelectedProperty = false;
+        console.log(selectedValue);
         alert("Não pode fazer ação sem selecionar propriedade válida!");
     }
 
     // if is a property is actually selected, find and update it
     else {
-        for(let i = 0; i < playerAtual.belongings.length; i++){
+        for(let i = 0; (i < playerAtual.belongings.length) && (validSelectedProperty == false); i++){
             if(playerAtual.belongings[i].nome == selectedValue){
                 // updates de global reference to the selected property
                 selectedProperty = playerAtual.belongings[i];
@@ -458,8 +459,7 @@ function updateSelectedProperty(){
                 // this flag shows that the property was selected in this turn
                 validSelectedProperty = true;
 
-            } else {
-                console.log("ERRO: propriedade não encontrada na lista.");
+
             }
         }
 
@@ -476,6 +476,27 @@ function updateSelectedProperty(){
 }
 
 function sellProperty(){
+
+    updateSelectedProperty();
+
+
+    if (validSelectedProperty === true) {
+
+        // let propriedades = playerAtual.belongings;
+        // console.log(propriedades);
+
+        let index = playerAtual.belongings.indexOf(selectedProperty);
+        playerAtual.owner = "bank";
+        playerAtual.reciveMoney((playerAtual.belongings[index].valorCompra) * 0.5);
+        playerAtual.belongings.splice(index, 1);
+        updateScreenInfo();
+
+        // todo
+        // belongings (use selectedProperty)
+        // _owner
+        // add 50%valorCompra
+    }
+
 
 
 }
