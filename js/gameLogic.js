@@ -131,6 +131,14 @@ function passTurn(){
 function updateScreenInfo(){
     document.getElementById('position_show').innerHTML = playerAtual.getName()+"(" + playerAtual.getPosition() + ")";
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
+
+    // updates de properties list
+    //TODO TEST THIS!!
+    //APPEND ELEMENTS TO THE LIST
+    // let node = document.createElement("LI");                 // Create a <li> node
+    // var textnode = document.createTextNode("Water");         // Create a text node
+    // node.appendChild(textnode);                              // Append the text to <li>
+    // document.getElementById("myList").appendChild(node);
 }
 
 function rollDice(){
