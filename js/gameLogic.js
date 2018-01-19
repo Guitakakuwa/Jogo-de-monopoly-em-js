@@ -521,3 +521,4 @@ let mandatoryPayValue = 0;
 
 // starts the game
 gameStart();
+

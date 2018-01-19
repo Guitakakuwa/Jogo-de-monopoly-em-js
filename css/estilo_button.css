@@ -32,24 +32,31 @@
   display:flex;
   margin-bottom:5%; 
   margin-top: 5%;
-  margin-left: 40px;
+  margin-left: 60px;
 
 }
 #placeholder ,#placeholder2  {
   height: 40px;
   width: 40px;
-  margin-left: : 50px ;
   border: 2px solid gray;
   border-radius: 10px;  
-  font-size:30px;
+  font-size: 20px;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   color: white;
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 6px;
+  margin-top: -5px;
+} 
 
+#button_roll{
+  padding: 20px;
+  font-size: 30px;
+} 
 
-
-}    .button_Rolar_dados {
+  .button_Rolar_dados {
     display: flex;
     padding: 25px 45px;
     font-size: 15px;
