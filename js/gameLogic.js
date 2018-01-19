@@ -174,7 +174,7 @@ function passTurn(){
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         validSelectedProperty = false;
         updateScreenInfo();
-    } else{ 
+    } else{
         alert("Tente jogar os dados antes!");
     }
 
@@ -379,6 +379,7 @@ function sellProperty(){
 
 
 }
+
 
 //  beggining of the execution
 let playersVetor = [];
