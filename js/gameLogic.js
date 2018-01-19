@@ -128,10 +128,10 @@ function gameStart(){
     playerAtual = playersVetor[0];
 
     inicializeCasas();
-    updateScreenInfo();
     printNumber("?");
     printNumber2("?");
     setPlayerColors();
+    updateScreenInfo();
 
 }
 
@@ -237,6 +237,7 @@ function updatesPlayerToken(){
 function updateScreenInfo(){
     // updates players name and money
     document.getElementById('position_show').innerHTML = playerAtual.getName();
+    document.getElementById('position_show').style.color = document.getElementById(String(1 +  getPlayerIndexByName(playerAtual.getName())) + "bol0").style.backgroundColor;
     document.getElementById('money_show').innerHTML = playerAtual.getMoney();
 
     updatesPlayerToken();
@@ -292,7 +293,7 @@ function rollDice(){
         allowBuy = true;
     }else{
         // alert("Não é tua vez! Ta querendo roubar?!");
-        document.getElementById("game-log").innerHTML = "Você já jogou os dados dessa vez!"
+        document.getElementById("game-log").innerHTML = "Você ja jagou nessa rodada!"
 
     }
     updateScreenInfo();
@@ -408,7 +409,7 @@ function buyProperty(){
         }
 
         else{
-            alert("Esta propriedade já possui dono");
+            document.getElementById("game-log").innerHTML ="Esta propriedade já possui dono!"
         }
     }
 
