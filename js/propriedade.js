@@ -51,13 +51,14 @@ class Propriedade extends CasaTabuleiro {
 
 }
 class Terreno extends Propriedade {
-    constructor(position, valorCompra, nome, precoDaCasa, aluguelBase, aluguelPorCasa, valorHipoteca) {
+    constructor(position, valorCompra, nome, precoDaCasa, aluguelBase, aluguelPorCasa, valorHipoteca, color) {
 
         super (position, valorCompra, nome, valorHipoteca);
         this.precoDaCasa = precoDaCasa;
         this.nCasas = 0;
         this.aluguelBase = aluguelBase;
         this.aluguelPorCasa = aluguelPorCasa;
+        this.color = color;
 
     }
     get aluguel () {
@@ -71,8 +72,10 @@ class Terreno extends Propriedade {
         alert("Siga sem pagar! a propriedade está hipotecada!");
         }
     }
-    addCasa (n) {
+    addCasa (n, casaAtual) {
         this.nCasas = this.nCasas + n;
+        playerAtual.pay(casaAtual.precoDaCasa);
+        updateScreenInfo();
     }
     removeCasa (n) {
         this.nCasas = this.nCasas - n;
@@ -100,16 +103,16 @@ class Evento extends CasaTabuleiro {
     acaoDoEvento(){
         if (playerAtual.getPosition() === 18) {
             lucrosDividendos ();
-            console.log("caiu em lucros e Dividendos");
+
         } else if (playerAtual.getPosition() === 24) {
             impostoDeRenda();
-            console.log("caiu em imposto de renda");
+
         } else if (playerAtual.getPosition() === 30) {
             sendToPrison();
-            console.log("foi pra prisão, trouxa");
+
         } else {
             SR();
-            console.log("sorte e revés");
+
         }
 
     }
