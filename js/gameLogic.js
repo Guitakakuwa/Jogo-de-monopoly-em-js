@@ -184,18 +184,11 @@ function inicializeCasas(){
         casaVetor.push(casa[i]);
     }
 
-
-
-
-
-
-
 }
 
 function passTurn(){
     if(rolledDice == true && mandatoryPayPendency == false) {
         turnNumber++;
-        mandatoryPayPendency = false;
         allowBuy = false;
         printNumber("?");
         printNumber2("?");
@@ -204,10 +197,10 @@ function passTurn(){
         playerAtual = playersVetor[turnNumber%(playersVetor.length)];
         validSelectedProperty = false;
         updateScreenInfo();
-        document.getElementById("game-log").innerHTML = "Jogue os dados!"
+        document.getElementById("game-log").innerHTML = "Jogue os dados!";
     } else{
         // alert("Tente jogar os dados antes!");
-        document.getElementById("game-log").innerHTML = "Jogue os dados antes."
+        document.getElementById("game-log").innerHTML = "Jogue os dados antes.";
     }
 
 }
@@ -244,7 +237,6 @@ function updateScreenInfo(){
     updatesPlayerToken();
 
     // updates de properties list
-    //TODO TEST THIS!!
     var propertyListNode = document.getElementById("telas_da_opcs");
 
     // remove last player's propertis from the list
@@ -447,7 +439,7 @@ function updateSelectedProperty(){
     if(selectedValue == "" || selectedValue == "sem propriedades!"){
         validSelectedProperty = false;
         console.log(selectedValue);
-        alert("Não pode fazer ação sem selecionar propriedade válida!");
+        document.getElementById("game-log").innerHTML = "Não pode fazer ação sem selecionar propriedade válida!";
     }
 
     // if is a property is actually selected, find and update it
@@ -507,6 +499,32 @@ function sellProperty(){
     }
 
 
+
+}
+
+// TODO implement this
+function showPropertyName(name){
+    let info = "Nenhuma informação sobre o tópico!";
+    let found = false;
+    let i;
+
+    for(i = 0; ((i < casaVetor.length) && (found == false)); i++){
+        if((casaVetor[i].nome.toUpperCase()).includes(name.toUpperCase()) == true){
+            found = true;
+        }
+    }
+
+    i -= 1;
+
+    if(found == true){
+        info = casaVetor[i].nome;
+
+        if(casaVetor[i] instanceof Propriedade) {
+            info += " b: " + casaVetor[i].valorCompra + "$";
+        }
+
+        document.getElementById("game-log").innerHTML = info;
+    }
 
 }
 
