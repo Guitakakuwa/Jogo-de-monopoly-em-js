@@ -156,9 +156,9 @@ function inicializeCasas(){
     casa[14] = new Terreno (14, 180, "Avenida Pacaembu", 100, 14, 55, 90);
     casa[15] = new Companhia (15, 150, "Companhia de Táxi", 40, 75);
     casa[16] = new Evento (16, "Sorte/Revés");
-    casa[17] = new Terreno (17, 350, "Interlagos", 200, 35, 140, 175);
+    casa[17] = new Terreno (17, 350, "Interlagos", 200, 35, 140, 175, "orange");
     casa[18] = new Evento (18, "Lucros e Dividendos");
-    casa[19] = new Terreno (19, 400, "Morumbi", 200, 50, 150, 200);
+    casa[19] = new Terreno (19, 400, "Morumbi", 200, 50, 150, 200, "orange");
     casa[20] = new CasaTabuleiro (20, "Parada Livre");
     casa[21] = new Terreno (21, 120, "Flamengo", 50, 8, 30, 50);
     casa[22] = new Evento (22, "Sorte/Revés");
@@ -169,7 +169,7 @@ function inicializeCasas(){
     casa[27] = new Evento (27, "Sorte/Revés");
     casa[28] = new Terreno (28, 140, "Avenida Paulista", 100, 10, 40, 70);
     casa[29] = new Terreno (29, 140, "Jardim Europa", 100, 10, 40, 70);
-    casa[30] = new Evento(30, "Sorte/Revés");
+    casa[30] = new Evento(30, "Vá para a Prisão");
     casa[31] = new Terreno (31, 260, "Copacabana", 150, 22, 80, 130);
     casa[32] = new Companhia (32, 200, "Companhia de Aviação", 50, 100);
     casa[33] = new Terreno (33, 320, "Avenida Viera Souto", 200, 28, 120, 160);
@@ -296,6 +296,9 @@ function movePlayer(distance){
     let newPosition = playerAtual.getPosition() + distance;
 
     //  loops the board
+    if (newPosition >= 40) {
+        playerAtual.reciveMoney(200);
+    }
     newPosition = newPosition % casaVetor.length;
 
     if(playerAtual.isInPrision() == false) {
@@ -304,7 +307,13 @@ function movePlayer(distance){
 
         // updates to show the player's new position
         updateScreenInfo();
-        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+        if (casaAtual instanceof Propriedade && casaAtual.owner == "bank") {
+        document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!\nPreço: R$    " + casaAtual.valorCompra;
+    }   else if (casaAtual instanceof Propriedade && casaAtual.owner != "bank") {
+            document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!\n Pagou aluguel de R$ " + casaAtual.calculaAluguel(diceOne + diceTwo) + " para " +  casaAtual.owner;
+        } else  if (!(casaAtual instanceof Evento)){
+            document.getElementById("game-log").innerHTML = "Você caiu em " + casaAtual.nome + "!";
+        }
 
 
         // handles the events that happens at the new position
@@ -312,7 +321,6 @@ function movePlayer(distance){
             // check if property not for sale
             if(casaAtual.owner != "bank" &&
             casaAtual.owner != playerAtual.getName()) {
-                console.log("landed on owned by others property");
                 let valorPag = casaAtual.calculaAluguel(diceOne+diceTwo);
                 let pay = mandatoryPay(valorPag);
 
@@ -320,8 +328,8 @@ function movePlayer(distance){
                 if (pay == true) {
                     let receiverIndex = getPlayerIndexByName(casaAtual.owner);
                     playersVetor[receiverIndex].reciveMoney(valorPag);
-                    // alert("Pagou " + valorPag + " por dar role!");
-                    document.getElementById("game-log").innerHTML = "Pagou " + valorPag + " por ser troxa xD"
+
+
                 }
             }
         } else if (casaAtual instanceof Evento) {
@@ -333,7 +341,7 @@ function movePlayer(distance){
     //  if players is in prision
     else {
         // end of jail time
-        if(playerAtual.prisionTime == 0){
+        if((playerAtual.prisionTime == 0) || (diceOne === diceTwo)){
             playerAtual.getFree();
         }
 
@@ -525,7 +533,29 @@ function showPropertyName(name){
 
         document.getElementById("game-log").innerHTML = info;
     }
+}
 
+function addHouse () {
+    let casaAtual = casaVetor[playerAtual.getPosition()];
+    // se a propriedade for do jogador checa se ele possui todas as propriedades da mesma cor
+    if (casaAtual.owner == playerAtual.name) {
+        let color = casaAtual.color;
+        let check = true;
+
+        for (let i = 0; i < casaVetor.length; i++) {
+            if (casaVetor[i].color === color) {
+                if (casaVetor[i].owner !== playerAtual.name)
+                check = false;
+            }
+        }
+        if (check === true) {
+            casaAtual.addCasa(1, casaAtual);
+
+        }
+    // propriedade não é do jogador
+    } else {
+        document.getElementById("game-log").innerHTML = "Essa propriedade não é sua";
+    }
 }
 
 
